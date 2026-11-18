@@ -311,6 +311,7 @@ pub fn responses_to_chat_completions_with_reasoning(
         coalesce_replayed_tool_turn_messages(&mut messages);
     }
     backfill_tool_call_reasoning_placeholders(&mut messages);
+    drop_empty_user_messages(&mut messages);
     let messages = collapse_system_messages_to_head(messages);
     result["messages"] = json!(messages);
 
@@ -606,6 +607,25 @@ fn collapse_system_messages_to_head(messages: Vec<Value>) -> Vec<Value> {
     }
     out.extend(rest);
     out
+}
+
+/// 压缩后 Codex 把只有图片的用户消息重建成空文本，严格的 Chat 上游逐条校验 content，
+/// 直接 400「message content cannot be empty」（cc-switch#9660）。只去掉空的用户消息，
+/// 其余消息保持原样。
+fn drop_empty_user_messages(messages: &mut Vec<Value>) {
+    messages.retain(|message| {
+        message.get("role").and_then(Value::as_str) != Some("user")
+            || !chat_content_is_empty(message.get("content"))
+    });
+}
+
+fn chat_content_is_empty(content: Option<&Value>) -> bool {
+    match content {
+        None | Some(Value::Null) => true,
+        Some(Value::String(text)) => text.trim().is_empty(),
+        Some(Value::Array(parts)) => parts.is_empty(),
+        Some(_) => false,
+    }
 }
 
 fn instruction_text(value: &Value) -> String {
@@ -2711,6 +2731,37 @@ mod tests {
                 assert_eq!(result["messages"][0]["reasoning_content"], reasoning);
             }
         }
+    }
+
+    #[test]
+    fn responses_request_to_chat_drops_empty_user_messages() {
+        // After compaction Codex rebuilds an image-only user message as empty
+        // text; strict Chat gateways reject it with "message content cannot be
+        // empty" (cc-switch#9660). Other messages keep their shape.
+        let image = json!({"type": "input_image", "image_url": "data:image/png;base64,AAAA"});
+        let result = convert_test_input(vec![
+            json!({"type": "message", "role": "user",
+                "content": [{"type": "input_text", "text": "start"}]}),
+            json!({"type": "message", "role": "user",
+                "content": [{"type": "input_text", "text": ""}]}),
+            json!({"type": "message", "role": "user",
+                "content": [{"type": "input_text", "text": "  "}]}),
+            json!({"type": "message", "role": "user", "content": []}),
+            json!({"type": "message", "role": "user", "content": [image]}),
+            json!({"type": "message", "role": "assistant",
+                "content": [{"type": "output_text", "text": "done"}]}),
+            json!({"type": "message", "role": "user",
+                "content": [{"type": "input_text", "text": "continue"}]}),
+        ]);
+
+        assert_eq!(
+            message_roles(&result),
+            vec!["user", "user", "assistant", "user"]
+        );
+        assert_eq!(result["messages"][0]["content"], "start");
+        assert_eq!(result["messages"][1]["content"][0]["type"], "image_url");
+        assert_eq!(result["messages"][2]["content"], "done");
+        assert_eq!(result["messages"][3]["content"], "continue");
     }
 
     #[test]
