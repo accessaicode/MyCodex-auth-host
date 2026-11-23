@@ -126,8 +126,14 @@ gh api repos/jintonglu6688/MyCodex-auth-host/releases/latest --jq '.tag_name'
 | `tools/authentication-center/Prepare-AuthenticationHostRelease.ps1` | Windows 标签、包名、压缩包 SHA-256、可执行文件 SHA-256、源码提交 |
 | `tools/authentication-center/Test-AuthenticationHostPackage.ps1` | 包和安装回执接受的 `hostVersion` |
 | `src/MyCodex.Infrastructure/AuthenticationCenter/AuthenticationHostRelease.cs` | 远端标签、源码提交、包名版本，以及三个 Unix 目标各自的包/二进制 SHA-256 |
-| `src/MyCodex.Infrastructure/AuthenticationCenter/AuthenticationHostArtifact.cs` | 前端接受的后台版本 |
+| `src/MyCodex.Infrastructure/AuthenticationCenter/AuthenticationHostArtifact.cs` | 前端的固定版本：Windows 只接受它；远端版本更高时不降级 |
 | `tests/MyCodex.Application.Tests` 中对应认证用例 | 当前版本断言；保留有意用于旧版拒绝、回退和清理的样例 |
+
+替换固定版本之前，先决定被替换的版本能否留在 `AuthenticationHostRelease.cs` 的 `CompatibleReleases`。WSL/SSH 上列在其中的旧版照常运行，更新只是可选项；未列入的旧版不会用于处理请求，认证功能要等用户更新（不影响 App Server 连接）。
+
+- `protocolVersion` 和数据库 `SCHEMA_VERSION` 不变，前端新增的调用都先检查 `capabilities`，旧方法的参数与返回仍兼容：将被替换版本三个 Unix 目标的二进制 SHA-256 和源码提交原样移入该表，并用该版本实测直连与转换路由。
+- 任一项不满足，或旧版有必须修复的安全、数据问题：不加入，并删除表中同样不满足的版本。
+- 不按版本号放行：清单由远端自报，只有审核过的哈希可以证明二进制来源。
 
 元数据中的 `asset.sha256` 是压缩包哈希，`asset.manifest.sha256` 是二进制哈希；`manifest.sourceRevision` 是标签所指向的源码提交。不要填写发布之后产生的新提交 SHA。
 
@@ -150,6 +156,7 @@ dotnet test tests/MyCodex.Application.Tests/MyCodex.Application.Tests.csproj -c 
 | GitCode 上传中断 | 同一标签重跑脚本；已存在且内容一致的附件会跳过，缺失附件继续上传。 |
 | GitCode 同名附件内容不同 | 停止，核对来源和目标。脚本有意拒绝覆盖；不要强制替换已发布版本，优先更正来源或发布新版本。 |
 | 一键同步取到了旧版本 | 检查 GitHub Latest；用明确标签同步，或在确认后更新 Latest。 |
+| 远端提示后台比 MyCodex 新 | 更新该电脑上的 MyCodex；不要为了匹配旧前端而降级远端后台。 |
 | 前端仍不提示新版本 | 核对前端固定版本/哈希、构建输出和实际运行程序。它不追踪任意在线最新版。 |
 | 已运行后台与新版 GUI 身份不一致 | 完成登录/在途请求，再按现有更新维护流程处理；不要通过删除认证存档或强杀活动后台解决。 |
 
