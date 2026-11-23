@@ -6,9 +6,9 @@
 
 | 职责 | 仓库 | 本机目录（示例） |
 | --- | --- | --- |
-| 后台源码、四平台云构建和 GitHub Release | `jintonglu6688/MyCodex-auth-host`（GitHub） | `E:\MyCodex-auth-core` |
+| 后台源码、四平台云构建和 GitHub Release | `accessaicode/MyCodex-auth-host`（GitHub） | `E:\MyCodex-auth-core` |
 | GitCode 镜像脚本及下载产物 | `gcw_SpGZ48lW/mycodex-auth-host`（GitCode） | `E:\MyCodex-auth-gitcode` |
-| GUI、Windows 内置包及远端安装版本固定 | `jintonglu6688/MyCodex`（GitHub） | `E:\MyCodex` |
+| GUI、Windows 内置包及远端安装版本固定 | `accessaicode/MyCodex`（GitHub） | `E:\MyCodex` |
 
 其他机器按实际目录调整。后台 `origin` 应指向自己的 GitHub 仓库；`upstream` 是 CC Switch 原作者仓库，不向它推送。GitCode 使用独立分发仓库，不把前后台源码推过去，也不在 MyCodex 源码仓库添加 GitCode remote。
 
@@ -50,7 +50,7 @@ python -B scripts/Test-MyCodexAuthRelease.py
 仅需要测试产物时，在后台根目录执行：
 
 ```powershell
-$repo = 'jintonglu6688/MyCodex-auth-host'
+$repo = 'accessaicode/MyCodex-auth-host'
 $buildRef = git branch --show-current
 gh workflow run auth-core-release.yml --repo $repo --ref $buildRef
 ```
@@ -60,7 +60,7 @@ gh workflow run auth-core-release.yml --repo $repo --ref $buildRef
 正式发布时，在后台根目录为已经提交、推送并确认干净的源码建立新标签：
 
 ```powershell
-$repo = 'jintonglu6688/MyCodex-auth-host'
+$repo = 'accessaicode/MyCodex-auth-host'
 $version = Read-Host '输入已在源码中更新的后台版本，例如 X.Y.Z'
 if ($version -notmatch '^\d+\.\d+\.\d+$') { throw '版本格式应为 X.Y.Z' }
 $tag = "auth-core-v$version"
@@ -109,8 +109,8 @@ if ($LASTEXITCODE -ne 0) { throw 'GitCode 镜像尚未完成，请检查错误' 
 一键入口 `Publish-Latest.bat`（或省略标签运行 Python 脚本）读取 GitHub `/releases/latest`，**不会自行查找版本号最大的标签**。认证云工作流当前使用 `--latest=false` 发布，因此新版本不保证成为 Latest。若确实要把该版本设为一键入口的默认来源，在确认发布和镜像结果且获得相应授权后执行：
 
 ```powershell
-gh release edit $tag --repo jintonglu6688/MyCodex-auth-host --latest
-gh api repos/jintonglu6688/MyCodex-auth-host/releases/latest --jq '.tag_name'
+gh release edit $tag --repo accessaicode/MyCodex-auth-host --latest
+gh api repos/accessaicode/MyCodex-auth-host/releases/latest --jq '.tag_name'
 ```
 
 返回标签应与预期一致。仅同步指定版本时不必修改 Latest。GitCode 自动生成的源码压缩包只包含分发脚本，不是后台源码或后台安装包。
