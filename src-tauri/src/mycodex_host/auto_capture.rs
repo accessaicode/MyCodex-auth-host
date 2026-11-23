@@ -232,7 +232,7 @@ fn set_current(state: &AppState, id: &str) -> Result<()> {
         .map_err(service_error)?;
     state
         .db
-        .set_current_provider("codex", id)
+        .set_current_provider(&AppType::Codex, id)
         .map_err(service_error)?;
     crate::settings::set_current_provider(
         &AppType::Codex,
@@ -386,7 +386,7 @@ fn capture(state: &AppState, trace: &mut diagnostics::Trace) -> Result<Outcome> 
         .is_none()
     {
         if providers.is_empty() {
-            McpService::import_from_codex(state).map_err(service_error)?;
+            McpService::import_from_app(state, &AppType::Codex).map_err(service_error)?;
         }
         snapshot.unchanged()?;
         state
@@ -404,7 +404,7 @@ fn capture(state: &AppState, trace: &mut diagnostics::Trace) -> Result<Outcome> 
     {
         state
             .db
-            .save_provider("codex", &provider)
+            .save_provider(&AppType::Codex, &provider)
             .map_err(service_error)?;
         trace.provider_saved = true;
     }

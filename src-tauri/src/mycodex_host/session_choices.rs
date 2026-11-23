@@ -240,7 +240,7 @@ pub(super) fn backfill(state: &AppState) -> Result<()> {
     }
     let Some(mut provider) = state
         .db
-        .get_provider_by_id(&current, "codex")
+        .get_provider_by_id(&current, &AppType::Codex)
         .map_err(service_error)?
     else {
         return Ok(());
@@ -260,7 +260,7 @@ pub(super) fn backfill(state: &AppState) -> Result<()> {
         provider.settings_config["config"] = json!(row.to_string());
         state
             .db
-            .save_provider("codex", &provider)
+            .save_provider(&AppType::Codex, &provider)
             .map_err(service_error)?;
     }
     Ok(())

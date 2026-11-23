@@ -346,6 +346,8 @@ fn repair_item(
         OpaqueStateRejection {
             reasoning: true,
             compaction: mode == Mode::Compaction,
+            // Keep well-formed ids: only a relay that names them needs them all removed.
+            item_ids: false,
         },
     );
     counts.reasoning += result.removed_reasoning_items;

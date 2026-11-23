@@ -1,8 +1,8 @@
 {
   "source": "src/config/codexProviderPresets.ts",
-  "sourceSha256": "2fcfb5f2fda875978c6781eab64032dd4760bc3c09b1b3f584734274e0a4e59a",
+  "sourceSha256": "095cf3b6e1a1827ea304f578e7cfd3768c8250b96557330699bd3423b5e89444",
   "claudeSource": "src/config/claudeProviderPresets.ts",
-  "claudeSourceSha256": "3b44f9f48e756030040f2428a2ee2da9b31e450e2850809ef41d24e03754a168",
+  "claudeSourceSha256": "9a589e3725bb758227f6f346bd9efe523cdd4106893d30f7b0ef8c367ea478d4",
   "presets": [
     {
       "name": "OpenAI Official",
@@ -24,7 +24,7 @@
       "name": "GitHub Copilot",
       "websiteUrl": "https://github.com/features/copilot",
       "auth": {},
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6-astra\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"github-copilot\"\nbase_url = \"https://api.githubcopilot.com\"\nwire_api = \"responses\"\nrequires_openai_auth = false",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6-astra\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"github-copilot\"\nbase_url = \"https://api.githubcopilot.com\"\nwire_api = \"responses\"\nrequires_openai_auth = false",
       "endpointCandidates": [
         "https://api.githubcopilot.com"
       ],
@@ -36,9 +36,6 @@
           "displayName": "GPT-6 Astra",
           "contextWindow": 272000,
           "supportsParallelToolCalls": true,
-          "inputModalities": [
-            "text"
-          ],
           "reasoningLevels": [
             "low",
             "medium",
@@ -52,9 +49,6 @@
           "displayName": "GPT-5.6 Sol",
           "contextWindow": 272000,
           "supportsParallelToolCalls": true,
-          "inputModalities": [
-            "text"
-          ],
           "reasoningLevels": [
             "none",
             "low",
@@ -69,9 +63,6 @@
           "displayName": "GPT-5.6 Terra",
           "contextWindow": 272000,
           "supportsParallelToolCalls": true,
-          "inputModalities": [
-            "text"
-          ],
           "reasoningLevels": [
             "none",
             "low",
@@ -86,9 +77,6 @@
           "displayName": "GPT-5.6 Luna",
           "contextWindow": 200000,
           "supportsParallelToolCalls": true,
-          "inputModalities": [
-            "text"
-          ],
           "reasoningLevels": [
             "none",
             "low",
@@ -103,9 +91,6 @@
           "displayName": "GPT-5.5",
           "contextWindow": 272000,
           "supportsParallelToolCalls": true,
-          "inputModalities": [
-            "text"
-          ],
           "reasoningLevels": [
             "none",
             "low",
@@ -130,7 +115,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"kimi-k3\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"kimi\"\nbase_url = \"https://api.moonshot.cn/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"kimi-k3\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"kimi\"\nbase_url = \"https://api.moonshot.cn/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.moonshot.cn/v1"
       ],
@@ -172,7 +157,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"kimi-k3\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"kimi\"\nbase_url = \"https://api.moonshot.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"kimi-k3\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"kimi\"\nbase_url = \"https://api.moonshot.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.moonshot.ai/v1"
       ],
@@ -215,7 +200,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"kimi-for-coding\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"kimi_coding\"\nbase_url = \"https://api.kimi.com/coding/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"kimi-for-coding\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"kimi_coding\"\nbase_url = \"https://api.kimi.com/coding/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.kimi.com/coding/v1"
       ],
@@ -285,7 +270,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"kimi-for-coding\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"kimi_coding\"\nbase_url = \"https://api.kimi.ai/coding/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"kimi-for-coding\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"kimi_coding\"\nbase_url = \"https://api.kimi.ai/coding/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.kimi.ai/coding/v1"
       ],
@@ -349,7 +334,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"packycode\"\nbase_url = \"https://www.packyapi.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"packycode\"\nbase_url = \"https://www.packyapi.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://www.packyapi.ai/v1",
         "https://cf.api.fan/v1",
@@ -368,7 +353,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nreview_model = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"APINebula\"\nbase_url = \"https://apinebula.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nreview_model = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"APINebula\"\nbase_url = \"https://apinebula.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://apinebula.ai/v1"
       ],
@@ -384,7 +369,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"aicodemirror\"\nbase_url = \"https://api.aicodemirror.ai/api/codex/backend-api/codex\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"aicodemirror\"\nbase_url = \"https://api.aicodemirror.ai/api/codex/backend-api/codex\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.aicodemirror.ai/api/codex/backend-api/codex"
       ],
@@ -401,13 +386,30 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"patewayai\"\nbase_url = \"https://api.pateway.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"patewayai\"\nbase_url = \"https://api.pateway.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.pateway.ai/v1"
       ],
       "isPartner": true,
       "partnerPromotionKey": "patewayai",
       "icon": "pateway"
+    },
+    {
+      "name": "Modelflare",
+      "websiteUrl": "https://modelflare.dev",
+      "apiKeyUrl": "https://modelflare.dev/sign-up?utm_medium=referral&utm_source=ccswitch",
+      "category": "aggregator",
+      "auth": {
+        "OPENAI_API_KEY": ""
+      },
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"modelflare\"\nbase_url = \"https://modelflare.dev/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "endpointCandidates": [
+        "https://modelflare.dev/v1",
+        "https://origin.modelflare.dev/v1"
+      ],
+      "isPartner": true,
+      "partnerPromotionKey": "modelflare",
+      "icon": "modelflare"
     },
     {
       "name": "hao.ai",
@@ -417,7 +419,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"openai/gpt-5.6-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"hao_ai\"\nbase_url = \"https://api.hao.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"openai/gpt-5.6-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"hao_ai\"\nbase_url = \"https://api.hao.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "isPartner": true,
       "partnerPromotionKey": "haoai",
       "icon": "haoai"
@@ -430,7 +432,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"fenno\"\nbase_url = \"https://api.fenno.ai\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"fenno\"\nbase_url = \"https://api.fenno.ai\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.fenno.ai"
       ],
@@ -446,7 +448,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"runapi\"\nbase_url = \"https://runapi.host/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"runapi\"\nbase_url = \"https://runapi.host/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://runapi.host/v1",
         "https://runapi.co/v1"
@@ -463,7 +465,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"openmodel\"\nbase_url = \"https://api.openmodel.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"openmodel\"\nbase_url = \"https://api.openmodel.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "isPartner": true,
       "partnerPromotionKey": "openmodel",
       "icon": "openmodel"
@@ -476,7 +478,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"grooroute_pro\"\nbase_url = \"https://grooroute.pro/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"grooroute_pro\"\nbase_url = \"https://grooroute.pro/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://grooroute.pro/v1",
         "https://grooroute.xyz/v1"
@@ -486,19 +488,6 @@
       "icon": "grooroute"
     },
     {
-      "name": "DIT.ai",
-      "websiteUrl": "https://dit.ai",
-      "apiKeyUrl": "https://dit.ai?utm_source=ccswitch",
-      "category": "aggregator",
-      "auth": {
-        "OPENAI_API_KEY": ""
-      },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-5.6-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"dit_ai\"\nbase_url = \"https://api.dit.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
-      "isPartner": true,
-      "partnerPromotionKey": "dit",
-      "icon": "dit"
-    },
-    {
       "name": "BuyToken",
       "websiteUrl": "https://buytoken.work",
       "apiKeyUrl": "https://buytoken.work/sign-up?aff=cc-switch",
@@ -506,7 +495,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-5.6-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"buytoken\"\nbase_url = \"https://api.buytoken.work/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-5.6-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"buytoken\"\nbase_url = \"https://api.buytoken.work/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "isPartner": true,
       "partnerPromotionKey": "buytoken",
       "icon": "buytoken"
@@ -519,7 +508,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"vapi\"\nbase_url = \"https://api.gpt.ge/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"vapi\"\nbase_url = \"https://api.gpt.ge/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.gpt.ge/v1",
         "https://api.vveai.com/v1",
@@ -541,7 +530,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"glm-5.3\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"tokenfactory\"\nbase_url = \"https://api.tokenfactory.cn/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"glm-5.3\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"tokenfactory\"\nbase_url = \"https://api.tokenfactory.cn/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.tokenfactory.cn/v1"
       ],
@@ -567,19 +556,6 @@
           "inputModalities": [
             "text",
             "image"
-          ],
-          "reasoningLevels": [
-            "low",
-            "high",
-            "max"
-          ]
-        },
-        {
-          "model": "deepseek-v4-pro-0813",
-          "displayName": "DeepSeek V4 Pro",
-          "contextWindow": 1048576,
-          "inputModalities": [
-            "text"
           ],
           "reasoningLevels": [
             "low",
@@ -641,20 +617,12 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"deepseek-v4-pro\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"fluxa_tokenplan\"\nbase_url = \"https://api.baiduqianfan.ai/v2/tokenplan/team\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"deepseek-v4.1-flash\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"fluxa_tokenplan\"\nbase_url = \"https://api.baiduqianfan.ai/v2/tokenplan/team\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.baiduqianfan.ai/v2/tokenplan/team"
       ],
       "apiFormat": "openai_chat",
       "modelCatalog": [
-        {
-          "model": "deepseek-v4-pro",
-          "displayName": "DeepSeek V4 Pro",
-          "contextWindow": 1048576,
-          "inputModalities": [
-            "text"
-          ]
-        },
         {
           "model": "deepseek-v4.1-flash",
           "displayName": "DeepSeek V4.1 Flash",
@@ -740,7 +708,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"aigocode\"\nbase_url = \"https://api.aigocode.dev\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"aigocode\"\nbase_url = \"https://api.aigocode.dev\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.aigocode.dev",
         "https://api.aigocode.app"
@@ -759,7 +727,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6-astra\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"qiniu\"\nbase_url = \"https://api.qnaigc.com/bypass/openai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6-astra\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"qiniu\"\nbase_url = \"https://api.qnaigc.com/bypass/openai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.qnaigc.com/bypass/openai/v1",
         "https://api.modelink.ai/bypass/openai/v1"
@@ -775,7 +743,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"aicoding\"\nbase_url = \"https://api.aicoding.inc\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"aicoding\"\nbase_url = \"https://api.aicoding.inc\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.aicoding.inc"
       ],
@@ -792,13 +760,26 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"subrouter\"\nbase_url = \"https://subrouter.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"subrouter\"\nbase_url = \"https://subrouter.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://subrouter.ai/v1"
       ],
       "isPartner": true,
       "partnerPromotionKey": "subrouter",
       "icon": "subrouter"
+    },
+    {
+      "name": "OspreyAI",
+      "websiteUrl": "https://open.ospreyai.cn",
+      "apiKeyUrl": "https://open.ospreyai.cn",
+      "category": "aggregator",
+      "auth": {
+        "OPENAI_API_KEY": ""
+      },
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"ospreyai\"\nbase_url = \"https://open.ospreyai.cn/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "isPartner": true,
+      "partnerPromotionKey": "ospreyai",
+      "icon": "ospreyai"
     },
     {
       "name": "Shengsuanyun",
@@ -808,7 +789,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"openai/gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"shengsuanyun\"\nbase_url = \"https://router.shengsuanyun.com/api/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"openai/gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"shengsuanyun\"\nbase_url = \"https://router.shengsuanyun.com/api/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "category": "aggregator",
       "isPartner": true,
       "partnerPromotionKey": "shengsuanyun",
@@ -822,7 +803,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"88api\"\nbase_url = \"https://api.88api.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"88api\"\nbase_url = \"https://api.88api.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.88api.ai/v1",
         "https://88api.ai/v1"
@@ -839,7 +820,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nreview_model = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"APIKEY.FUN\"\nbase_url = \"https://api.apikey.fan/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nreview_model = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"APIKEY.FUN\"\nbase_url = \"https://api.apikey.fan/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.apikey.fan/v1",
         "https://api.apikey.fun/v1",
@@ -852,13 +833,13 @@
     },
     {
       "name": "9527CODE",
-      "websiteUrl": "https://9527.codes",
-      "apiKeyUrl": "https://9527.codes/register?aff=e5zI",
+      "websiteUrl": "https://9527.codes/register?channel=ccs",
+      "apiKeyUrl": "https://9527.codes/register?channel=ccs",
       "category": "aggregator",
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"9527code\"\nbase_url = \"https://9527.codes/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"9527code\"\nbase_url = \"https://9527.codes/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://9527.codes/v1",
         "https://api.9527.codes/v1",
@@ -876,7 +857,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"code0\"\nbase_url = \"https://code0.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"code0\"\nbase_url = \"https://code0.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://code0.ai/v1"
       ],
@@ -884,15 +865,14 @@
     },
     {
       "name": "TeamoRouter",
-      "websiteUrl": "https://teamorouter.cn",
-      "apiKeyUrl": "https://teamorouter.cn/?utm_source=cc_switch&utm_medium=referral&utm_campaign=ai_directory",
+      "websiteUrl": "https://teamorouter.com",
+      "apiKeyUrl": "https://teamorouter.com/?utm_source=cc_switch&utm_medium=referral&utm_campaign=ai_directory",
       "category": "aggregator",
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"teamorouter\"\nbase_url = \"https://api.teamorouter.cn/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"teamorouter\"\nbase_url = \"https://api.teamorouter.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
-        "https://api.teamorouter.cn/v1",
         "https://api.teamorouter.com/v1"
       ],
       "isPartner": true,
@@ -906,7 +886,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"deepseek/deepseek-v4.1-flash\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"ppio\"\nbase_url = \"https://api.ppio.com/openai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"deepseek/deepseek-v4.1-flash\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"ppio\"\nbase_url = \"https://api.ppio.com/openai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.ppio.com/openai/v1"
       ],
@@ -942,7 +922,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"claudecn\"\nbase_url = \"https://claudecn.top/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"claudecn\"\nbase_url = \"https://claudecn.top/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "isPartner": true,
       "partnerPromotionKey": "claudecn",
       "icon": "claudecn"
@@ -956,7 +936,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"ark-code-latest\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"ark_agentplan\"\nbase_url = \"https://ark.cn-beijing.volces.com/api/plan/v3\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"ark-code-latest\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"ark_agentplan\"\nbase_url = \"https://ark.cn-beijing.volces.com/api/plan/v3\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://ark.cn-beijing.volces.com/api/plan/v3"
       ],
@@ -988,7 +968,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"ark-code-latest\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"ark_codingplan\"\nbase_url = \"https://ark.cn-beijing.volces.com/api/coding/v3\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"ark-code-latest\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"ark_codingplan\"\nbase_url = \"https://ark.cn-beijing.volces.com/api/coding/v3\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://ark.cn-beijing.volces.com/api/coding/v3"
       ],
@@ -1018,7 +998,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"ark-code-latest\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"byteplus\"\nbase_url = \"https://ark.ap-southeast.bytepluses.com/api/coding/v3\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"ark-code-latest\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"byteplus\"\nbase_url = \"https://ark.ap-southeast.bytepluses.com/api/coding/v3\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://ark.ap-southeast.bytepluses.com/api/coding/v3"
       ],
@@ -1051,7 +1031,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"doubao-seed-2-1-pro-260915\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"doubaoseed\"\nbase_url = \"https://ark.cn-beijing.volces.com/api/v3\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"doubao-seed-2-1-pro-260915\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"doubaoseed\"\nbase_url = \"https://ark.cn-beijing.volces.com/api/v3\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://ark.cn-beijing.volces.com/api/v3"
       ],
@@ -1084,7 +1064,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"deepseek-ai/DeepSeek-V4-Flash\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"siliconflow\"\nbase_url = \"https://api.siliconflow.cn/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"deepseek-ai/DeepSeek-V4-Flash\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"siliconflow\"\nbase_url = \"https://api.siliconflow.cn/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.siliconflow.cn/v1"
       ],
@@ -1127,7 +1107,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"MiniMaxAI/MiniMax-M3\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"siliconflow_en\"\nbase_url = \"https://api.siliconflow.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"MiniMaxAI/MiniMax-M3\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"siliconflow_en\"\nbase_url = \"https://api.siliconflow.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.siliconflow.com/v1"
       ],
@@ -1151,15 +1131,15 @@
     },
     {
       "name": "A6API",
-      "websiteUrl": "https://www.a6api.com",
-      "apiKeyUrl": "https://a6api.com/register?aff=AqNr",
+      "websiteUrl": "https://www.a6api.vip",
+      "apiKeyUrl": "https://a6api.vip/register?aff=AqNr",
       "category": "aggregator",
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"a6api\"\nbase_url = \"https://api.a6api.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"a6api\"\nbase_url = \"https://api.a6api.vip/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
-        "https://api.a6api.com/v1"
+        "https://api.a6api.vip/v1"
       ],
       "isPartner": true,
       "partnerPromotionKey": "a6api",
@@ -1175,7 +1155,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"compshare\"\nbase_url = \"https://api.modelverse.cn/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"compshare\"\nbase_url = \"https://api.modelverse.cn/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.modelverse.cn/v1"
       ],
@@ -1195,7 +1175,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"compshare_coding\"\nbase_url = \"https://cp.compshare.cn/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"compshare_coding\"\nbase_url = \"https://cp.compshare.cn/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://cp.compshare.cn/v1"
       ],
@@ -1213,12 +1193,11 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6-astra\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"ccsub\"\nbase_url = \"https://www.ccsub.net/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6-astra\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"ccsub\"\nbase_url = \"https://www.ccsub.net/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://www.ccsub.net/v1"
       ],
       "isPartner": true,
-      "partnerPromotionKey": "ccsub",
       "icon": "ccsub"
     },
     {
@@ -1228,7 +1207,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"sssaicode\"\nbase_url = \"https://node-hk.sssaicodeapi.com/api/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"sssaicode\"\nbase_url = \"https://node-hk.sssaicodeapi.com/api/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://node-hk.sssaicodeapi.com/api/v1",
         "https://node-hk.sssaiapi.com/api/v1",
@@ -1248,7 +1227,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"soleapi\"\nbase_url = \"https://soleapi.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"soleapi\"\nbase_url = \"https://soleapi.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://soleapi.com/v1"
       ],
@@ -1263,7 +1242,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"micu\"\nbase_url = \"https://www.micuapi.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"micu\"\nbase_url = \"https://www.micuapi.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://www.micuapi.ai/v1"
       ],
@@ -1280,7 +1259,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"rightcode\"\nbase_url = \"https://www.rightapi.ai/codex/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"rightcode\"\nbase_url = \"https://www.rightapi.ai/codex/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "category": "third_party",
       "isPartner": true,
       "partnerPromotionKey": "rightcode",
@@ -1294,7 +1273,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"cubence\"\nbase_url = \"https://api.cubence.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"cubence\"\nbase_url = \"https://api.cubence.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.cubence.com/v1",
         "https://api-cf.cubence.com/v1",
@@ -1314,7 +1293,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"crazyrouter\"\nbase_url = \"https://cn.crazyrouter.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"crazyrouter\"\nbase_url = \"https://cn.crazyrouter.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://cn.crazyrouter.com/v1"
       ],
@@ -1330,7 +1309,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"dmxapi\"\nbase_url = \"https://www.dmxapi.cn/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"dmxapi\"\nbase_url = \"https://www.dmxapi.cn/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://www.dmxapi.cn/v1"
       ],
@@ -1347,7 +1326,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nreview_model = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"SudoCode\"\nbase_url = \"https://api.sudocode.chat/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nreview_model = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"SudoCode\"\nbase_url = \"https://api.sudocode.chat/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.sudocode.chat/v1",
         "https://api.sudorelay.com/v1"
@@ -1366,7 +1345,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nreview_model = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\nmodel_verbosity = \"high\"\n\n[model_providers.custom]\nname = \"sudocode\"\nbase_url = \"https://sudocode.us/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nreview_model = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\nmodel_verbosity = \"high\"\n\n[model_providers.custom]\nname = \"sudocode\"\nbase_url = \"https://sudocode.us/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://sudocode.us/v1",
         "https://sudocode.run/v1"
@@ -1383,7 +1362,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"xycai\"\nbase_url = \"https://apicdn.xycai.us/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"xycai\"\nbase_url = \"https://apicdn.xycai.us/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://apicdn.xycai.us/v1",
         "https://apicdn.xyc.ai/v1"
@@ -1393,23 +1372,6 @@
       "icon": "xycai"
     },
     {
-      "name": "Modelflare",
-      "websiteUrl": "https://modelflare.dev",
-      "apiKeyUrl": "https://modelflare.dev/sign-up?utm_medium=referral&utm_source=ccswitch",
-      "category": "aggregator",
-      "auth": {
-        "OPENAI_API_KEY": ""
-      },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"modelflare\"\nbase_url = \"https://modelflare.dev/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
-      "endpointCandidates": [
-        "https://modelflare.dev/v1",
-        "https://origin.modelflare.dev/v1"
-      ],
-      "isPartner": true,
-      "partnerPromotionKey": "modelflare",
-      "icon": "modelflare"
-    },
-    {
       "name": "AllTokens",
       "websiteUrl": "https://alltokens.cc",
       "apiKeyUrl": "https://alltokens.cc/register",
@@ -1417,7 +1379,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"alltokens\"\nbase_url = \"https://alltokens.cc/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"alltokens\"\nbase_url = \"https://alltokens.cc/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "isPartner": true,
       "partnerPromotionKey": "alltokens",
       "icon": "alltokens"
@@ -1430,7 +1392,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"alltokens_si\"\nbase_url = \"https://alltokens.si/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"alltokens_si\"\nbase_url = \"https://alltokens.si/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "isPartner": true,
       "partnerPromotionKey": "alltokens_si",
       "icon": "alltokens-si"
@@ -1444,7 +1406,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"tuzi\"\nbase_url = \"https://api.tu-zi.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"tuzi\"\nbase_url = \"https://api.tu-zi.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.tu-zi.com/v1",
         "https://api.ourzhishi.top/v1",
@@ -1461,7 +1423,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"amux\"\nbase_url = \"https://api.amux.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"amux\"\nbase_url = \"https://api.amux.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.amux.ai/v1"
       ],
@@ -1475,7 +1437,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"zai-org/glm-5.3\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"AtlasCloud\"\nbase_url = \"https://api.atlascloud.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"zai-org/glm-5.3\"\n\n[model_providers.custom]\nname = \"AtlasCloud\"\nbase_url = \"https://api.atlascloud.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.atlascloud.ai/v1"
       ],
@@ -1510,7 +1472,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"soshow\"\nbase_url = \"https://maas.so-show.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"soshow\"\nbase_url = \"https://maas.so-show.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "icon": "soshow"
     },
     {
@@ -1521,7 +1483,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-5.6-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"Azure OpenAI\"\nbase_url = \"https://YOUR_RESOURCE_NAME.openai.azure.com/openai\"\nenv_key = \"OPENAI_API_KEY\"\nquery_params = { \"api-version\" = \"2025-04-01-preview\" }\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-5.6-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"Azure OpenAI\"\nbase_url = \"https://YOUR_RESOURCE_NAME.openai.azure.com/openai\"\nenv_key = \"OPENAI_API_KEY\"\nquery_params = { \"api-version\" = \"2025-04-01-preview\" }\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://YOUR_RESOURCE_NAME.openai.azure.com/openai"
       ],
@@ -1534,13 +1496,28 @@
       "iconColor": "#0078D4"
     },
     {
+      "name": "OpenAI API",
+      "websiteUrl": "https://platform.openai.com",
+      "apiKeyUrl": "https://platform.openai.com/api-keys",
+      "auth": {
+        "OPENAI_API_KEY": ""
+      },
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"openai\"\nbase_url = \"https://api.openai.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "endpointCandidates": [
+        "https://api.openai.com/v1"
+      ],
+      "category": "cn_official",
+      "icon": "openai",
+      "iconColor": "#00A67E"
+    },
+    {
       "name": "DeepSeek",
       "websiteUrl": "https://platform.deepseek.com",
       "apiKeyUrl": "https://platform.deepseek.com/api_keys",
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"deepseek-flash\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"deepseek\"\nbase_url = \"https://api.deepseek.com\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"deepseek-flash\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"deepseek\"\nbase_url = \"https://api.deepseek.com\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.deepseek.com"
       ],
@@ -1553,19 +1530,6 @@
           "inputModalities": [
             "text",
             "image"
-          ],
-          "reasoningLevels": [
-            "low",
-            "high",
-            "max"
-          ]
-        },
-        {
-          "model": "deepseek-v4-pro",
-          "displayName": "DeepSeek V4 Pro",
-          "contextWindow": 1048576,
-          "inputModalities": [
-            "text"
           ],
           "reasoningLevels": [
             "low",
@@ -1587,7 +1551,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"glm-5.3\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"zhipu_glm\"\nbase_url = \"https://open.bigmodel.cn/api/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"glm-5.3\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"zhipu_glm\"\nbase_url = \"https://open.bigmodel.cn/api/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://open.bigmodel.cn/api/v1"
       ],
@@ -1650,7 +1614,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"glm-5.3\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"zhipu_glm_en\"\nbase_url = \"https://api.z.ai/api/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"glm-5.3\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"zhipu_glm_en\"\nbase_url = \"https://api.z.ai/api/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.z.ai/api/v1"
       ],
@@ -1701,23 +1665,12 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"deepseek-v4-pro\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"qianfan\"\nbase_url = \"https://qianfan.baidubce.com/v2\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"deepseek-v4-flash\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"qianfan\"\nbase_url = \"https://qianfan.baidubce.com/v2\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://qianfan.baidubce.com/v2"
       ],
       "apiFormat": "openai_responses",
       "modelCatalog": [
-        {
-          "model": "deepseek-v4-pro",
-          "displayName": "DeepSeek V4 Pro",
-          "contextWindow": 1048576,
-          "inputModalities": [
-            "text"
-          ],
-          "reasoningLevels": [
-            "high"
-          ]
-        },
         {
           "model": "deepseek-v4-flash",
           "displayName": "DeepSeek V4 Flash",
@@ -1743,7 +1696,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"qianfan-code-latest\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"qianfan_coding\"\nbase_url = \"https://qianfan.baidubce.com/v2/coding\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"qianfan-code-latest\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"qianfan_coding\"\nbase_url = \"https://qianfan.baidubce.com/v2/coding\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://qianfan.baidubce.com/v2/coding"
       ],
@@ -1779,25 +1732,12 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"deepseek-v4-pro\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"qianfan_tokenplan\"\nbase_url = \"https://qianfan.baidubce.com/v2/tokenplan/personal\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"deepseek-v4-flash\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"qianfan_tokenplan\"\nbase_url = \"https://qianfan.baidubce.com/v2/tokenplan/personal\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://qianfan.baidubce.com/v2/tokenplan/personal"
       ],
       "apiFormat": "openai_chat",
       "modelCatalog": [
-        {
-          "model": "deepseek-v4-pro",
-          "displayName": "DeepSeek V4 Pro",
-          "contextWindow": 1048576,
-          "inputModalities": [
-            "text"
-          ],
-          "reasoningLevels": [
-            "none",
-            "high",
-            "max"
-          ]
-        },
         {
           "model": "deepseek-v4-flash",
           "displayName": "DeepSeek V4 Flash",
@@ -1860,8 +1800,9 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"qwen3.8-max\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"qianwenai\"\nbase_url = \"https://dashscope.aliyuncs.com/compatible-mode/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"qwen3.8-max\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"qianwenai\"\nbase_url = \"https://maas.qianwenaiapi.com/compatible-mode/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
+        "https://maas.qianwenaiapi.com/compatible-mode/v1",
         "https://dashscope.aliyuncs.com/compatible-mode/v1"
       ],
       "apiFormat": "openai_responses",
@@ -1923,8 +1864,9 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"qwen3.8-max\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"qianwenai_token_plan\"\nbase_url = \"https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"qwen3.8-max\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"qianwenai_token_plan\"\nbase_url = \"https://token-plan.maas.qianwenaiapi.com/compatible-mode/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
+        "https://token-plan.maas.qianwenaiapi.com/compatible-mode/v1",
         "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1"
       ],
       "apiFormat": "openai_responses",
@@ -1967,8 +1909,9 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"qwen3.8-max\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"qwencloud\"\nbase_url = \"https://dashscope-intl.aliyuncs.com/compatible-mode/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"qwen3.8-max\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"qwencloud\"\nbase_url = \"https://ap-southeast-1.maas.qwencloudapi.com/compatible-mode/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
+        "https://ap-southeast-1.maas.qwencloudapi.com/compatible-mode/v1",
         "https://dashscope-intl.aliyuncs.com/compatible-mode/v1"
       ],
       "apiFormat": "openai_responses",
@@ -2050,7 +1993,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"qwen3.7-plus\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"qwencloud_coding\"\nbase_url = \"https://coding-intl.dashscope.aliyuncs.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"qwen3.7-plus\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"qwencloud_coding\"\nbase_url = \"https://coding-intl.dashscope.aliyuncs.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://coding-intl.dashscope.aliyuncs.com/v1"
       ],
@@ -2088,8 +2031,9 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"qwen3.8-max\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"qwencloud_token_plan\"\nbase_url = \"https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"qwen3.8-max\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"qwencloud_token_plan\"\nbase_url = \"https://token-plan.maas.qwencloudapi.com/compatible-mode/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
+        "https://token-plan.maas.qwencloudapi.com/compatible-mode/v1",
         "https://token-plan.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1"
       ],
       "apiFormat": "openai_responses",
@@ -2141,7 +2085,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"hy3\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"hy3_tokenhub\"\nbase_url = \"https://tokenhub.tencentmaas.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"hy3\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"hy3_tokenhub\"\nbase_url = \"https://tokenhub.tencentmaas.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://tokenhub.tencentmaas.com/v1",
         "https://tokenhub.tencentmaas.cn/v1"
@@ -2200,7 +2144,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"tc-code-latest\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"tencent_token_plan\"\nbase_url = \"https://api.lkeap.cloud.tencent.com/plan/v3\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"tc-code-latest\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"tencent_token_plan\"\nbase_url = \"https://api.lkeap.cloud.tencent.com/plan/v3\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.lkeap.cloud.tencent.com/plan/v3"
       ],
@@ -2218,15 +2162,6 @@
         {
           "model": "deepseek-v4-flash-202605",
           "displayName": "DeepSeek V4 Flash",
-          "contextWindow": 1048576,
-          "reasoningLevels": [
-            "none",
-            "high"
-          ]
-        },
-        {
-          "model": "deepseek-v4-pro-202606",
-          "displayName": "DeepSeek V4 Pro",
           "contextWindow": 1048576,
           "reasoningLevels": [
             "none",
@@ -2314,7 +2249,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"auto\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"tencent_token_plan_intl\"\nbase_url = \"https://tokenhub-intl.tencentcloudmaas.com/plan/v3\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"auto\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"tencent_token_plan_intl\"\nbase_url = \"https://tokenhub-intl.tencentcloudmaas.com/plan/v3\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://tokenhub-intl.tencentcloudmaas.com/plan/v3"
       ],
@@ -2342,15 +2277,6 @@
           "model": "kimi-k2.6",
           "displayName": "Kimi K2.6",
           "contextWindow": 262144,
-          "reasoningLevels": [
-            "none",
-            "high"
-          ]
-        },
-        {
-          "model": "deepseek-v4-pro-202606",
-          "displayName": "DeepSeek V4 Pro",
-          "contextWindow": 1048576,
           "reasoningLevels": [
             "none",
             "high"
@@ -2396,7 +2322,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"auto\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"tencent_token_plan_enterprise_pro\"\nbase_url = \"https://tokenhub.tencentmaas.com/plan/v3\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"auto\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"tencent_token_plan_enterprise_pro\"\nbase_url = \"https://tokenhub.tencentmaas.com/plan/v3\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://tokenhub.tencentmaas.com/plan/v3",
         "https://tokenhub-intl.tencentmaas.com/plan/v3"
@@ -2505,18 +2431,6 @@
           ]
         },
         {
-          "model": "deepseek-v4-pro",
-          "displayName": "DeepSeek V4 Pro",
-          "contextWindow": 1048576,
-          "inputModalities": [
-            "text"
-          ],
-          "reasoningLevels": [
-            "none",
-            "high"
-          ]
-        },
-        {
           "model": "deepseek-v4-flash-0731",
           "displayName": "DeepSeek V4 Flash 0731 GA",
           "contextWindow": 1048576,
@@ -2529,32 +2443,8 @@
           ]
         },
         {
-          "model": "deepseek-v4-pro-0813",
-          "displayName": "DeepSeek V4 Pro 0813 GA",
-          "contextWindow": 1048576,
-          "inputModalities": [
-            "text"
-          ],
-          "reasoningLevels": [
-            "none",
-            "high"
-          ]
-        },
-        {
           "model": "deepseek-v4-flash-202605",
           "displayName": "DeepSeek V4 Flash Official",
-          "contextWindow": 1048576,
-          "inputModalities": [
-            "text"
-          ],
-          "reasoningLevels": [
-            "none",
-            "high"
-          ]
-        },
-        {
-          "model": "deepseek-v4-pro-202606",
-          "displayName": "DeepSeek V4 Pro Official",
           "contextWindow": 1048576,
           "inputModalities": [
             "text"
@@ -2586,7 +2476,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"auto\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"tencent_token_plan_enterprise_pro_intl\"\nbase_url = \"https://tokenhub-intl.tencentcloudmaas.com/plan/v3\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"auto\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"tencent_token_plan_enterprise_pro_intl\"\nbase_url = \"https://tokenhub-intl.tencentcloudmaas.com/plan/v3\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://tokenhub-intl.tencentcloudmaas.com/plan/v3",
         "https://tokenhub.tencentcloudmaas.com/plan/v3"
@@ -2660,18 +2550,6 @@
           ]
         },
         {
-          "model": "deepseek-v4-pro",
-          "displayName": "DeepSeek V4 Pro",
-          "contextWindow": 1048576,
-          "inputModalities": [
-            "text"
-          ],
-          "reasoningLevels": [
-            "none",
-            "high"
-          ]
-        },
-        {
           "model": "deepseek-v4-flash-0731",
           "displayName": "DeepSeek V4 Flash 0731 GA",
           "contextWindow": 1048576,
@@ -2684,32 +2562,8 @@
           ]
         },
         {
-          "model": "deepseek-v4-pro-0813",
-          "displayName": "DeepSeek V4 Pro 0813 GA",
-          "contextWindow": 1048576,
-          "inputModalities": [
-            "text"
-          ],
-          "reasoningLevels": [
-            "none",
-            "high"
-          ]
-        },
-        {
           "model": "deepseek-v4-flash-202605",
           "displayName": "DeepSeek V4 Flash Official",
-          "contextWindow": 1048576,
-          "inputModalities": [
-            "text"
-          ],
-          "reasoningLevels": [
-            "none",
-            "high"
-          ]
-        },
-        {
-          "model": "deepseek-v4-pro-202606",
-          "displayName": "DeepSeek V4 Pro Official",
           "contextWindow": 1048576,
           "inputModalities": [
             "text"
@@ -2741,7 +2595,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"auto\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"tencent_token_plan_enterprise_lite\"\nbase_url = \"https://tokenhub.tencentmaas.com/plan/v3\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"auto\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"tencent_token_plan_enterprise_lite\"\nbase_url = \"https://tokenhub.tencentmaas.com/plan/v3\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://tokenhub.tencentmaas.com/plan/v3",
         "https://tokenhub-intl.tencentmaas.com/plan/v3"
@@ -2778,7 +2632,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"auto\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"tencent_token_plan_enterprise_lite_intl\"\nbase_url = \"https://tokenhub-intl.tencentcloudmaas.com/plan/v3\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"auto\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"tencent_token_plan_enterprise_lite_intl\"\nbase_url = \"https://tokenhub-intl.tencentcloudmaas.com/plan/v3\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://tokenhub-intl.tencentcloudmaas.com/plan/v3",
         "https://tokenhub.tencentcloudmaas.com/plan/v3"
@@ -2816,7 +2670,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"step-3.7-flash\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"stepfun_api\"\nbase_url = \"https://api.stepfun.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"step-3.7-flash\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"stepfun_api\"\nbase_url = \"https://api.stepfun.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.stepfun.com/v1"
       ],
@@ -2852,7 +2706,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"step-3.7-flash\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"stepfun_api_en\"\nbase_url = \"https://api.stepfun.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"step-3.7-flash\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"stepfun_api_en\"\nbase_url = \"https://api.stepfun.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.stepfun.ai/v1"
       ],
@@ -2888,7 +2742,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"step-3.7-flash\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"stepfun\"\nbase_url = \"https://api.stepfun.com/step_plan/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"step-3.7-flash\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"stepfun\"\nbase_url = \"https://api.stepfun.com/step_plan/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.stepfun.com/step_plan/v1"
       ],
@@ -2933,7 +2787,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"step-3.7-flash\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"stepfun_en\"\nbase_url = \"https://api.stepfun.ai/step_plan/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"step-3.7-flash\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"stepfun_en\"\nbase_url = \"https://api.stepfun.ai/step_plan/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.stepfun.ai/step_plan/v1"
       ],
@@ -2975,7 +2829,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"ZhipuAI/GLM-5.2\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"modelscope\"\nbase_url = \"https://api-inference.modelscope.cn/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"ZhipuAI/GLM-5.2\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"modelscope\"\nbase_url = \"https://api-inference.modelscope.cn/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api-inference.modelscope.cn/v1"
       ],
@@ -3003,11 +2857,11 @@
       "family": "streamlake",
       "regionKey": "cn",
       "websiteUrl": "https://www.streamlake.com",
-      "apiKeyUrl": "https://console.streamlake.com/console/wanqing/api-key",
+      "apiKeyUrl": "https://console.streamlake.com/console/wanqing/api-key?channel=ccswitch",
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"kat-coder-pro-v2.5\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"streamlake\"\nbase_url = \"https://wanqing.streamlakeapi.com/api/gateway/v1/endpoints\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"kat-coder-pro-v2.5\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"streamlake\"\nbase_url = \"https://wanqing.streamlakeapi.com/api/gateway/v1/endpoints\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://wanqing.streamlakeapi.com/api/gateway/v1/endpoints"
       ],
@@ -3033,11 +2887,11 @@
       "family": "streamlake",
       "regionKey": "intl",
       "websiteUrl": "https://console.streamlake.ai",
-      "apiKeyUrl": "https://console.streamlake.ai/console/api-key",
+      "apiKeyUrl": "https://console.streamlake.ai/console/api-key?channel=ccswitch",
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"kat-coder-pro-v2.5\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"streamlake_en\"\nbase_url = \"https://vanchin.streamlake.ai/api/gateway/v1/endpoints\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"kat-coder-pro-v2.5\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"streamlake_en\"\nbase_url = \"https://vanchin.streamlake.ai/api/gateway/v1/endpoints\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://vanchin.streamlake.ai/api/gateway/v1/endpoints"
       ],
@@ -3065,7 +2919,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"LongCat-2.0\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"longcat\"\nbase_url = \"https://api.longcat.chat/openai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"LongCat-2.0\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"longcat\"\nbase_url = \"https://api.longcat.chat/openai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.longcat.chat/openai/v1"
       ],
@@ -3093,7 +2947,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"MiniMax-M3.1-Flash\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"minimax\"\nbase_url = \"https://api.minimax.cn/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"MiniMax-M3.1-Flash\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"minimax\"\nbase_url = \"https://api.minimax.cn/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.minimax.cn/v1"
       ],
@@ -3150,7 +3004,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"MiniMax-M3.1-Flash\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"minimax_en\"\nbase_url = \"https://api.minimax.io/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"MiniMax-M3.1-Flash\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"minimax_en\"\nbase_url = \"https://api.minimax.io/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.minimax.io/v1"
       ],
@@ -3205,7 +3059,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"astron-code-latest\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"astron_coding_plan\"\nbase_url = \"https://maas-coding-api.cn-huabei-1.xf-yun.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"astron-code-latest\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"astron_coding_plan\"\nbase_url = \"https://maas-coding-api.cn-huabei-1.xf-yun.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://maas-coding-api.cn-huabei-1.xf-yun.com/v1"
       ],
@@ -3234,7 +3088,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"Ling-2.6-1T\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"bailing\"\nbase_url = \"https://api.ant-ling.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"Ling-2.6-1T\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"bailing\"\nbase_url = \"https://api.ant-ling.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.ant-ling.com/v1"
       ],
@@ -3258,7 +3112,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"mimo-v2.6-pro\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"xiaomi_mimo\"\nbase_url = \"https://api.xiaomimimo.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"mimo-v2.6-pro\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"xiaomi_mimo\"\nbase_url = \"https://api.xiaomimimo.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.xiaomimimo.com/v1"
       ],
@@ -3332,7 +3186,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"mimo-v2.6-pro\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"xiaomi_mimo_token_plan\"\nbase_url = \"https://token-plan-cn.xiaomimimo.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"mimo-v2.6-pro\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"xiaomi_mimo_token_plan\"\nbase_url = \"https://token-plan-cn.xiaomimimo.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://token-plan-cn.xiaomimimo.com/v1"
       ],
@@ -3386,7 +3240,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"zai-org/GLM-5.3\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"baseten\"\nbase_url = \"https://inference.baseten.co/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"zai-org/GLM-5.3\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"baseten\"\nbase_url = \"https://inference.baseten.co/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://inference.baseten.co/v1"
       ],
@@ -3487,7 +3341,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"zai-org/glm-5.3\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"novita\"\nbase_url = \"https://api.novita.ai/openai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"zai-org/glm-5.3\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"novita\"\nbase_url = \"https://api.novita.ai/openai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.novita.ai/openai/v1"
       ],
@@ -3523,7 +3377,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"grok-4.5\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"xai\"\nbase_url = \"https://api.x.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"grok-4.7\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"xai\"\nbase_url = \"https://api.x.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.x.ai/v1"
       ],
@@ -3543,7 +3397,8 @@
             "medium",
             "high",
             "xhigh"
-          ]
+          ],
+          "defaultReasoningLevel": "high"
         },
         {
           "model": "grok-4.5",
@@ -3572,11 +3427,28 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"grok-4.5\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"xai\"\nbase_url = \"https://api.x.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = false",
+      "config": "model_provider = \"custom\"\nmodel = \"grok-4.7\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"xai\"\nbase_url = \"https://api.x.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = false",
       "apiFormat": "openai_responses",
       "providerType": "xai_oauth",
       "requiresOAuth": true,
       "modelCatalog": [
+        {
+          "model": "grok-4.7",
+          "displayName": "Grok 4.7",
+          "contextWindow": 500000,
+          "supportsParallelToolCalls": true,
+          "inputModalities": [
+            "text",
+            "image"
+          ],
+          "reasoningLevels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh"
+          ],
+          "defaultReasoningLevel": "high"
+        },
         {
           "model": "grok-4.5",
           "displayName": "Grok 4.5",
@@ -3605,7 +3477,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"moonshotai/kimi-k2.6\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"nvidia\"\nbase_url = \"https://integrate.api.nvidia.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"moonshotai/kimi-k2.6\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"nvidia\"\nbase_url = \"https://integrate.api.nvidia.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://integrate.api.nvidia.com/v1"
       ],
@@ -3632,7 +3504,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"glm-5.3\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"ollama_cloud\"\nbase_url = \"https://ollama.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"glm-5.3\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"ollama_cloud\"\nbase_url = \"https://ollama.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://ollama.com/v1"
       ],
@@ -3680,19 +3552,6 @@
           ]
         },
         {
-          "model": "deepseek-v4-pro:0813",
-          "displayName": "DeepSeek V4 Pro",
-          "contextWindow": 1048576,
-          "inputModalities": [
-            "text"
-          ],
-          "reasoningLevels": [
-            "low",
-            "high",
-            "max"
-          ]
-        },
-        {
           "model": "deepseek-v4.1-flash",
           "displayName": "DeepSeek V4.1 Flash",
           "contextWindow": 1048576,
@@ -3716,7 +3575,7 @@
       "auth": {
         "OPENAI_API_KEY": "ollama"
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-oss:20b\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"ollama\"\nbase_url = \"http://localhost:11434/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-oss:20b\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"ollama\"\nbase_url = \"http://localhost:11434/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "http://localhost:11434/v1",
         "http://127.0.0.1:11434/v1"
@@ -3775,7 +3634,7 @@
       "auth": {
         "OPENAI_API_KEY": "lmstudio"
       },
-      "config": "model_provider = \"custom\"\nmodel = \"openai/gpt-oss-20b\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"lm_studio\"\nbase_url = \"http://localhost:1234/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"openai/gpt-oss-20b\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"lm_studio\"\nbase_url = \"http://localhost:1234/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "http://localhost:1234/v1",
         "http://127.0.0.1:1234/v1"
@@ -3805,7 +3664,7 @@
       "auth": {
         "OPENAI_API_KEY": "no-key"
       },
-      "config": "model_provider = \"custom\"\nmodel = \"ggml-org/Qwen3-Coder-30B-A3B-Instruct-Q8_0-GGUF\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"llamacpp\"\nbase_url = \"http://127.0.0.1:9931/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"ggml-org/Qwen3-Coder-30B-A3B-Instruct-Q8_0-GGUF\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"llamacpp\"\nbase_url = \"http://127.0.0.1:9931/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "http://127.0.0.1:9931/v1",
         "http://127.0.0.1:8080/v1"
@@ -3833,7 +3692,7 @@
       "auth": {
         "OPENAI_API_KEY": "dummy"
       },
-      "config": "model_provider = \"custom\"\nmodel = \"Qwen/Qwen3.6-27B\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"vllm\"\nbase_url = \"http://localhost:8000/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"Qwen/Qwen3.6-27B\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"vllm\"\nbase_url = \"http://localhost:8000/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "http://localhost:8000/v1",
         "http://127.0.0.1:8000/v1"
@@ -3864,7 +3723,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"muse-wonder-1.0\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"meta\"\nbase_url = \"https://api.meta.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"muse-wonder-1.0\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"meta\"\nbase_url = \"https://api.meta.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.meta.ai/v1"
       ],
@@ -3917,7 +3776,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"deepseek-ai/DeepSeek-V4.1-Flash-1017\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"deepinfra\"\nbase_url = \"https://api.deepinfra.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"deepseek-ai/DeepSeek-V4.1-Flash-1017\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"deepinfra\"\nbase_url = \"https://api.deepinfra.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.deepinfra.com/v1"
       ],
@@ -3926,19 +3785,6 @@
         {
           "model": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
           "displayName": "DeepSeek V4.1 Flash 1017",
-          "contextWindow": 1048576,
-          "inputModalities": [
-            "text"
-          ],
-          "reasoningLevels": [
-            "low",
-            "high",
-            "max"
-          ]
-        },
-        {
-          "model": "deepseek-ai/DeepSeek-V4-Pro-0813",
-          "displayName": "DeepSeek V4 Pro 0813",
           "contextWindow": 1048576,
           "inputModalities": [
             "text"
@@ -4001,7 +3847,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"openai/gpt-6-astra\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"vercel\"\nbase_url = \"https://ai-gateway.vercel.sh/codex/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"openai/gpt-6-astra\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"vercel\"\nbase_url = \"https://ai-gateway.vercel.sh/codex/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://ai-gateway.vercel.sh/codex/v1"
       ],
@@ -4101,7 +3947,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"zai-org/GLM-5.3\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"nebius\"\nbase_url = \"https://api.tokenfactory.nebius.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"zai-org/GLM-5.3\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"nebius\"\nbase_url = \"https://api.tokenfactory.nebius.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.tokenfactory.nebius.com/v1"
       ],
@@ -4154,17 +4000,6 @@
           ]
         },
         {
-          "model": "deepseek-ai/DeepSeek-V4-Pro-0813",
-          "displayName": "DeepSeek V4 Pro 0813",
-          "contextWindow": 979000,
-          "inputModalities": [
-            "text"
-          ],
-          "reasoningLevels": [
-            "high"
-          ]
-        },
-        {
           "model": "deepseek-ai/DeepSeek-V4.1-Flash",
           "displayName": "DeepSeek V4.1 Flash",
           "contextWindow": 1048000,
@@ -4192,13 +4027,179 @@
       "icon": "nebius"
     },
     {
+      "name": "ClinePass",
+      "websiteUrl": "https://docs.cline.bot/getting-started/clinepass",
+      "apiKeyUrl": "https://app.cline.bot",
+      "auth": {
+        "OPENAI_API_KEY": ""
+      },
+      "config": "model_provider = \"custom\"\nmodel = \"cline-pass/kimi-k3.1-pro\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"clinepass\"\nbase_url = \"https://api.cline.bot/api/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "endpointCandidates": [
+        "https://api.cline.bot/api/v1"
+      ],
+      "apiFormat": "openai_chat",
+      "modelCatalog": [
+        {
+          "model": "cline-pass/kimi-k3.1-pro",
+          "displayName": "Kimi K3.1 Pro",
+          "contextWindow": 1048576,
+          "inputModalities": [
+            "text",
+            "image"
+          ],
+          "reasoningLevels": [
+            "high"
+          ]
+        },
+        {
+          "model": "cline-pass/glm-5.3",
+          "displayName": "GLM-5.3",
+          "contextWindow": 1000000,
+          "inputModalities": [
+            "text"
+          ],
+          "reasoningLevels": [
+            "high"
+          ]
+        },
+        {
+          "model": "cline-pass/glm-5.3-flash",
+          "displayName": "GLM-5.3 Flash",
+          "contextWindow": 1000000,
+          "inputModalities": [
+            "text",
+            "image"
+          ],
+          "reasoningLevels": [
+            "high"
+          ]
+        },
+        {
+          "model": "cline-pass/kimi-k3",
+          "displayName": "Kimi K3",
+          "contextWindow": 1048576,
+          "inputModalities": [
+            "text",
+            "image"
+          ],
+          "reasoningLevels": [
+            "high"
+          ]
+        },
+        {
+          "model": "cline-pass/deepseek-v4-pro",
+          "displayName": "DeepSeek V4 Pro",
+          "contextWindow": 1000000,
+          "inputModalities": [
+            "text"
+          ],
+          "reasoningLevels": [
+            "high"
+          ]
+        },
+        {
+          "model": "cline-pass/deepseek-v4.1-flash",
+          "displayName": "DeepSeek V4.1 Flash",
+          "contextWindow": 1000000,
+          "inputModalities": [
+            "text",
+            "image"
+          ],
+          "reasoningLevels": [
+            "high"
+          ]
+        },
+        {
+          "model": "cline-pass/qwen3.8-max",
+          "displayName": "Qwen3.8 Max",
+          "contextWindow": 1000000,
+          "inputModalities": [
+            "text",
+            "image"
+          ],
+          "reasoningLevels": [
+            "high"
+          ]
+        },
+        {
+          "model": "cline-pass/qwen3.7-plus",
+          "displayName": "Qwen3.7 Plus",
+          "contextWindow": 1000000,
+          "inputModalities": [
+            "text",
+            "image"
+          ],
+          "reasoningLevels": [
+            "high"
+          ]
+        },
+        {
+          "model": "cline-pass/minimax-m3",
+          "displayName": "MiniMax M3",
+          "contextWindow": 1048576,
+          "inputModalities": [
+            "text",
+            "image"
+          ],
+          "reasoningLevels": [
+            "high"
+          ]
+        },
+        {
+          "model": "cline-pass/minimax-m3.1-flash",
+          "displayName": "MiniMax M3.1 Flash",
+          "contextWindow": 1000000,
+          "inputModalities": [
+            "text",
+            "image"
+          ],
+          "reasoningLevels": [
+            "high"
+          ]
+        },
+        {
+          "model": "cline-pass/mimo-v2.6-pro",
+          "displayName": "MiMo V2.6 Pro",
+          "contextWindow": 1048576,
+          "inputModalities": [
+            "text",
+            "image"
+          ],
+          "reasoningLevels": [
+            "high"
+          ]
+        },
+        {
+          "model": "cline-pass/mimo-v2.6-flash",
+          "displayName": "MiMo V2.6 Flash",
+          "contextWindow": 1048576,
+          "inputModalities": [
+            "text",
+            "image"
+          ],
+          "reasoningLevels": [
+            "high"
+          ]
+        }
+      ],
+      "codexChatReasoning": {
+        "supportsThinking": false,
+        "supportsEffort": false,
+        "thinkingParam": "none",
+        "effortParam": "none",
+        "outputFormat": "reasoning"
+      },
+      "category": "third_party",
+      "icon": "cline"
+    },
+    {
       "name": "Groq",
       "websiteUrl": "https://groq.com",
       "apiKeyUrl": "https://console.groq.com/keys",
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"openai/gpt-oss-120b\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"groq\"\nbase_url = \"https://api.groq.com/openai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"openai/gpt-oss-120b\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"groq\"\nbase_url = \"https://api.groq.com/openai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.groq.com/openai/v1"
       ],
@@ -4249,7 +4250,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"MiniMax-M3\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"sambanova\"\nbase_url = \"https://api.sambanova.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"MiniMax-M3\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"sambanova\"\nbase_url = \"https://api.sambanova.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.sambanova.ai/v1"
       ],
@@ -4290,7 +4291,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"openai-gpt-6-1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"digitalocean\"\nbase_url = \"https://inference.do-ai.run/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"openai-gpt-6-1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"digitalocean\"\nbase_url = \"https://inference.do-ai.run/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://inference.do-ai.run/v1"
       ],
@@ -4326,11 +4327,12 @@
           ]
         },
         {
-          "model": "deepseek-v4-pro-0813",
-          "displayName": "DeepSeek V4 Pro 0813",
+          "model": "deepseek-v4.1-flash-1017",
+          "displayName": "DeepSeek V4.1 Flash 1017",
           "contextWindow": 1048576,
           "inputModalities": [
-            "text"
+            "text",
+            "image"
           ],
           "reasoningLevels": [
             "low",
@@ -4349,7 +4351,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"zai-org/GLM-5.3:baseten\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"huggingface\"\nbase_url = \"https://router.huggingface.co/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"zai-org/GLM-5.3:baseten\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"huggingface\"\nbase_url = \"https://router.huggingface.co/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://router.huggingface.co/v1"
       ],
@@ -4391,17 +4393,6 @@
           ]
         },
         {
-          "model": "deepseek-ai/DeepSeek-V4-Pro-0813:baseten",
-          "displayName": "DeepSeek V4 Pro 0813 (Baseten)",
-          "contextWindow": 1048576,
-          "inputModalities": [
-            "text"
-          ],
-          "reasoningLevels": [
-            "high"
-          ]
-        },
-        {
           "model": "deepseek-ai/DeepSeek-V4.1-Flash-1017:baseten",
           "displayName": "DeepSeek V4.1 Flash 1017 (Baseten)",
           "contextWindow": 1048576,
@@ -4430,7 +4421,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"accounts/fireworks/models/glm-5p3\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"fireworks\"\nbase_url = \"https://api.fireworks.ai/inference/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"accounts/fireworks/models/glm-5p3\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"fireworks\"\nbase_url = \"https://api.fireworks.ai/inference/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.fireworks.ai/inference/v1"
       ],
@@ -4500,20 +4491,20 @@
     {
       "name": "Mistral AI",
       "websiteUrl": "https://mistral.ai",
-      "apiKeyUrl": "https://console.mistral.ai/api-keys",
+      "apiKeyUrl": "https://chat.mistral.ai/code/extensions",
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"mistral-medium-3-5\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"mistral\"\nbase_url = \"https://api.mistral.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"mistral-large-4\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"mistral\"\nbase_url = \"https://api.mistral.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.mistral.ai/v1"
       ],
       "apiFormat": "openai_chat",
       "modelCatalog": [
         {
-          "model": "mistral-medium-3-5",
-          "displayName": "Mistral Medium 3.5",
-          "contextWindow": 256000,
+          "model": "mistral-large-4",
+          "displayName": "Mistral Large 4",
+          "contextWindow": 1000000,
           "inputModalities": [
             "text",
             "image"
@@ -4530,8 +4521,7 @@
         }
       ],
       "category": "cn_official",
-      "icon": "mistral",
-      "hidden": true
+      "icon": "mistral"
     },
     {
       "name": "Cloudflare AI Gateway",
@@ -4540,7 +4530,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"cloudflare_ai_gateway\"\nbase_url = \"https://gateway.ai.cloudflare.com/v1/YOUR_ACCOUNT_ID/default/openai\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"cloudflare_ai_gateway\"\nbase_url = \"https://gateway.ai.cloudflare.com/v1/YOUR_ACCOUNT_ID/default/openai\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "apiFormat": "openai_responses",
       "category": "cloud_provider",
       "icon": "cloudflare"
@@ -4555,7 +4545,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"glm-5.3\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"opencode_go\"\nbase_url = \"https://opencode.ai/zen/go/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"glm-5.3\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"opencode_go\"\nbase_url = \"https://opencode.ai/zen/go/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://opencode.ai/zen/go/v1"
       ],
@@ -4611,15 +4601,6 @@
           ]
         },
         {
-          "model": "deepseek-v4-pro",
-          "displayName": "DeepSeek V4 Pro",
-          "contextWindow": 1048576,
-          "reasoningLevels": [
-            "high",
-            "max"
-          ]
-        },
-        {
           "model": "deepseek-v4.1-flash",
           "displayName": "DeepSeek V4.1 Flash",
           "contextWindow": 1048576,
@@ -4648,7 +4629,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"opencode_zen\"\nbase_url = \"https://opencode.ai/zen/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"opencode_zen\"\nbase_url = \"https://opencode.ai/zen/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://opencode.ai/zen/v1"
       ],
@@ -4663,7 +4644,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"aihubmix\"\nbase_url = \"https://aihubmix.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"aihubmix\"\nbase_url = \"https://aihubmix.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://aihubmix.com/v1",
         "https://api.aihubmix.com/v1"
@@ -4672,13 +4653,33 @@
       "iconColor": "#006FFB"
     },
     {
+      "name": "Genesis",
+      "websiteUrl": "https://genesis.moi.matrixorigin.cn/taas/",
+      "apiKeyUrl": "https://uc.moi.matrixorigin.cn/account/credentials?app=genesis",
+      "category": "aggregator",
+      "auth": {
+        "OPENAI_API_KEY": ""
+      },
+      "config": "model_provider = \"custom\"\nmodel = \"kimi-k3\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"genesis\"\nbase_url = \"https://token.moi.matrixorigin.cn/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "apiFormat": "openai_responses",
+      "modelCatalog": [
+        {
+          "model": "kimi-k3"
+        }
+      ],
+      "endpointCandidates": [
+        "https://token.moi.matrixorigin.cn/v1"
+      ],
+      "icon": "genesis"
+    },
+    {
       "name": "CherryIN",
       "websiteUrl": "https://open.cherryin.ai",
       "apiKeyUrl": "https://open.cherryin.ai/console/token",
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"openai/gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"cherryin\"\nbase_url = \"https://open.cherryin.net/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"openai/gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"cherryin\"\nbase_url = \"https://open.cherryin.net/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://open.cherryin.net/v1"
       ],
@@ -4693,7 +4694,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6-astra\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"relaxycode\"\nbase_url = \"https://www.relaxycode.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6-astra\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"relaxycode\"\nbase_url = \"https://www.relaxycode.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "icon": "relaxcode"
     },
     {
@@ -4703,7 +4704,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"E-FlowCode\"\nbase_url = \"https://e-flowcode.cc/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true\nmodel_context_window = 1000000\nmodel_auto_compact_token_limit = 9000000",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"E-FlowCode\"\nbase_url = \"https://e-flowcode.cc/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true\nmodel_context_window = 1000000\nmodel_auto_compact_token_limit = 9000000",
       "category": "third_party",
       "endpointCandidates": [
         "https://e-flowcode.cc/v1"
@@ -4718,7 +4719,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"medium\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"PIPELLM\"\nwire_api = \"responses\"\nrequires_openai_auth = true\nbase_url = \"https://cc-api.pipellm.ai/v1\"",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"medium\"\n\n[model_providers.custom]\nname = \"PIPELLM\"\nwire_api = \"responses\"\nrequires_openai_auth = true\nbase_url = \"https://cc-api.pipellm.ai/v1\"",
       "category": "aggregator",
       "endpointCandidates": [
         "https://cc-api.pipellm.ai/v1"
@@ -4732,7 +4733,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"openai/gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"openrouter\"\nbase_url = \"https://openrouter.ai/api/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"openai/gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"openrouter\"\nbase_url = \"https://openrouter.ai/api/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "category": "aggregator",
       "icon": "openrouter",
       "iconColor": "#6566F1"
@@ -4744,7 +4745,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"openai/gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"therouter\"\nbase_url = \"https://api.therouter.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"openai/gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"therouter\"\nbase_url = \"https://api.therouter.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.therouter.ai/v1"
       ],
@@ -4758,7 +4759,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"claude-fable-5-1\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"jiekou\"\nbase_url = \"https://api.jiekou.ai/openai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"claude-fable-5-1\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"jiekou\"\nbase_url = \"https://api.jiekou.ai/openai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.jiekou.ai/openai/v1"
       ],
@@ -4785,7 +4786,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"aicodewith\"\nbase_url = \"https://api.aicodewith.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"aicodewith\"\nbase_url = \"https://api.aicodewith.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.aicodewith.ai/v1"
       ],
@@ -4800,7 +4801,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"deepseek/deepseek-v4.1-flash\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"command_code\"\nbase_url = \"https://api.commandcode.ai/provider/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"deepseek/deepseek-v4.1-flash\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"command_code\"\nbase_url = \"https://api.commandcode.ai/provider/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.commandcode.ai/provider/v1"
       ],
@@ -4842,7 +4843,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"deepseek-v4.1-flash\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"moark\"\nbase_url = \"https://moark.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"deepseek-v4.1-flash\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"moark\"\nbase_url = \"https://moark.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://moark.com/v1"
       ],
@@ -4858,21 +4859,6 @@
           "reasoningLevels": [
             "low",
             "high",
-            "max"
-          ]
-        },
-        {
-          "model": "DeepSeek-V4-Pro-0813",
-          "displayName": "DeepSeek V4 Pro 0813",
-          "contextWindow": 1000000,
-          "inputModalities": [
-            "text"
-          ],
-          "reasoningLevels": [
-            "low",
-            "medium",
-            "high",
-            "xhigh",
             "max"
           ]
         },
@@ -4937,7 +4923,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"soruxgpt\"\nbase_url = \"https://ai.soruxgpt.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"soruxgpt\"\nbase_url = \"https://ai.soruxgpt.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://ai.soruxgpt.com/v1",
         "https://api-cf.soruxgpt.com/v1",
@@ -4956,7 +4942,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"soruxgpt_coding\"\nbase_url = \"https://app.soruxgpt.com/api/codex\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"soruxgpt_coding\"\nbase_url = \"https://app.soruxgpt.com/api/codex\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://app.soruxgpt.com/api/codex",
         "https://center.soruxgpt.com/api/codex",
@@ -4972,7 +4958,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"ikuncode\"\nbase_url = \"https://api.ikuncode.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"ikuncode\"\nbase_url = \"https://api.ikuncode.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://api.ikuncode.ai/v1",
         "https://api.ikuncode.cc/v1"
@@ -4987,7 +4973,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"runtoken\"\nbase_url = \"https://www.runtoken.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"runtoken\"\nbase_url = \"https://www.runtoken.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://www.runtoken.ai/v1",
         "https://fast.runtoken.ai/v1"
@@ -5002,7 +4988,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"botcf\"\nbase_url = \"https://botcf.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"botcf\"\nbase_url = \"https://botcf.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "icon": "botcf"
     },
     {
@@ -5014,7 +5000,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"yylx\"\nbase_url = \"https://app.yylx.io/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"yylx\"\nbase_url = \"https://app.yylx.io/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "endpointCandidates": [
         "https://app.yylx.io/v1",
         "https://global.yylx.io/v1",
@@ -5024,13 +5010,17 @@
     },
     {
       "name": "TokenFlux",
-      "websiteUrl": "https://tokenflux.dev",
-      "apiKeyUrl": "https://tokenflux.dev/keys",
+      "websiteUrl": "https://tokenflux.com",
+      "apiKeyUrl": "https://tokenflux.com/keys",
       "category": "aggregator",
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"tokenflux\"\nbase_url = \"https://tokenflux.dev/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"tokenflux\"\nbase_url = \"https://tokenflux.com/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "endpointCandidates": [
+        "https://tokenflux.com/v1",
+        "https://tokenflux.dev/v1"
+      ],
       "icon": "tokenflux"
     },
     {
@@ -5041,7 +5031,7 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"nekocode\"\nbase_url = \"https://nekoapi.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"nekocode\"\nbase_url = \"https://nekoapi.ai/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "icon": "nekocode"
     },
     {
@@ -5052,11 +5042,43 @@
       "auth": {
         "OPENAI_API_KEY": ""
       },
-      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\ndisable_response_storage = true\n\n[model_providers.custom]\nname = \"aicoming\"\nbase_url = \"https://api.aicoming.top/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "config": "model_provider = \"custom\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"high\"\n\n[model_providers.custom]\nname = \"aicoming\"\nbase_url = \"https://api.aicoming.top/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
       "icon": "aicoming"
+    },
+    {
+      "name": "TokenPlus",
+      "websiteUrl": "https://www.tokenplus.cn/",
+      "apiKeyUrl": "https://www.tokenplus.cn/workspace",
+      "category": "aggregator",
+      "partnerPromotionKey": "tokenplus",
+      "icon": "tokenplus",
+      "auth": {
+        "OPENAI_API_KEY": ""
+      },
+      "config": "model_provider = \"custom\"\nmodel = \"deepseek/deepseek-v4.1-flash-1017\"\n\n[model_providers.custom]\nname = \"tokenplus\"\nbase_url = \"https://api.tokenplus.cn/v1\"\nwire_api = \"responses\"\nrequires_openai_auth = true",
+      "apiFormat": "openai_chat",
+      "modelCatalog": [
+        {
+          "model": "deepseek/deepseek-v4.1-flash-1017",
+          "displayName": "DeepSeek V4.1 Flash 1017"
+        },
+        {
+          "model": "z-ai/glm-5.3-flash",
+          "displayName": "GLM 5.3 Flash"
+        },
+        {
+          "model": "moonshot-ai/kimi-k3.1-pro",
+          "displayName": "Kimi K3.1 Pro"
+        },
+        {
+          "model": "minimax/m3.1-flash",
+          "displayName": "MiniMax M3.1 Flash"
+        }
+      ]
     }
   ],
   "anthropicBaseUrls": {
+    "TokenPlus": "https://api.tokenplus.cn",
     "Kimi": "https://api.moonshot.cn/anthropic",
     "Kimi Global": "https://api.moonshot.ai/anthropic",
     "Kimi For Coding": "https://api.kimi.com/coding",
@@ -5065,12 +5087,12 @@
     "APINebula": "https://apinebula.ai",
     "AICodeMirror": "https://api.aicodemirror.ai/api/claudecode",
     "PatewayAI": "https://api.pateway.ai",
+    "Modelflare": "https://modelflare.dev",
     "hao.ai": "https://api.hao.ai/anthropic",
     "FennoAI": "https://api.fenno.ai",
     "RunAPI": "https://runapi.host",
     "OpenModel": "https://api.openmodel.ai",
     "GrooRoute Pro": "https://grooroute.pro",
-    "DIT.ai": "https://api.dit.ai",
     "BuyToken": "https://api.buytoken.work",
     "V-API": "https://api.gpt.ge",
     "TokenFactory": "https://api.tokenfactory.cn/anthropic",
@@ -5079,12 +5101,13 @@
     "Qiniu": "https://api.qnaigc.com",
     "AICoding": "https://api.aicoding.inc",
     "SubRouter": "https://subrouter.ai",
+    "OspreyAI": "https://open.ospreyai.cn",
     "Shengsuanyun": "https://router.shengsuanyun.com/api",
     "88API": "https://api.88api.ai",
     "APIKEY.FUN": "https://api.apikey.fan",
     "9527CODE": "https://9527.codes",
     "Code0": "https://code0.ai",
-    "TeamoRouter": "https://api.teamorouter.cn",
+    "TeamoRouter": "https://api.teamorouter.com",
     "PPIO": "https://api.ppio.com/anthropic",
     "ClaudeCN": "https://claudecn.top",
     "火山 Agent Plan": "https://ark.cn-beijing.volces.com/api/plan",
@@ -5093,7 +5116,7 @@
     "Volcengine Doubao": "https://ark.cn-beijing.volces.com/api/compatible",
     "SiliconFlow": "https://api.siliconflow.cn",
     "SiliconFlow en": "https://api.siliconflow.com",
-    "A6API": "https://api.a6api.com",
+    "A6API": "https://api.a6api.vip",
     "Compshare": "https://api.modelverse.cn",
     "Compshare Coding Plan": "https://cp.compshare.cn",
     "CCSub": "https://www.ccsub.net",
@@ -5107,7 +5130,6 @@
     "SudoCode.chat": "https://api.sudocode.chat",
     "SudoCode.us": "https://sudocode.us",
     "XycAi": "https://apicdn.xycai.us",
-    "Modelflare": "https://modelflare.dev",
     "AllTokens": "https://alltokens.cc",
     "AllTokens SI": "https://alltokens.si",
     "Tu-zi": "https://api.tu-zi.com",
@@ -5127,11 +5149,12 @@
     "Zhipu GLM en": "https://api.z.ai/api/anthropic",
     "Baidu Qianfan Coding Plan": "https://qianfan.baidubce.com/anthropic/coding",
     "Baidu Qianfan Token Plan": "https://qianfan.baidubce.com/anthropic/tokenplan/personal",
-    "千问AI平台": "https://dashscope.aliyuncs.com/apps/anthropic",
-    "千问AI平台 Token Plan": "https://token-plan.cn-beijing.maas.aliyuncs.com/apps/anthropic",
-    "QwenCloud": "https://dashscope-intl.aliyuncs.com/apps/anthropic",
+    "Astron Coding Plan": "https://maas-coding-api.cn-huabei-1.xf-yun.com/anthropic",
+    "千问AI平台": "https://maas.qianwenaiapi.com/apps/anthropic",
+    "千问AI平台 Token Plan": "https://token-plan.maas.qianwenaiapi.com/apps/anthropic",
+    "QwenCloud": "https://ap-southeast-1.maas.qwencloudapi.com/apps/anthropic",
     "QwenCloud For Coding": "https://coding-intl.dashscope.aliyuncs.com/apps/anthropic",
-    "QwenCloud Token Plan": "https://token-plan.ap-southeast-1.maas.aliyuncs.com/apps/anthropic",
+    "QwenCloud Token Plan": "https://token-plan.maas.qwencloudapi.com/apps/anthropic",
     "StepFun": "https://api.stepfun.com/step_plan",
     "StepFun en": "https://api.stepfun.ai/step_plan",
     "ModelScope": "https://api-inference.modelscope.cn",
@@ -5174,7 +5197,7 @@
     "RunToken": "https://www.runtoken.ai",
     "BotCF": "https://botcf.com",
     "YYLX": "https://app.yylx.io",
-    "TokenFlux": "https://tokenflux.dev",
+    "TokenFlux": "https://tokenflux.com",
     "NekoCode": "https://nekoapi.ai",
     "AIComing": "https://api.aicoming.top"
   }

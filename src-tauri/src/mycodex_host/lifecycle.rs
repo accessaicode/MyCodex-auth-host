@@ -211,8 +211,12 @@ pub(super) fn conversion(provider: &Provider) -> Result<bool> {
         return Err("route_takeover_not_supported");
     }
     if let Some(binding) = provider.meta.as_ref().and_then(|m| m.auth_binding.as_ref()) {
+        // The account binding's provider, not the provider kind ProviderKind reads.
         if binding.source == crate::provider::AuthBindingSource::ManagedAccount
-            && binding.auth_provider.as_deref() != Some("codex_oauth")
+            && !binding
+                .auth_provider
+                .as_deref()
+                .is_some_and(|name| name == "codex_oauth")
         {
             return Err("unsupported_managed_account");
         }
@@ -258,18 +262,19 @@ pub(super) fn conversion(provider: &Provider) -> Result<bool> {
 pub(super) fn configure(state: &AppState) -> Result<()> {
     // The private database belongs exclusively to this Codex target. Never run
     // upstream all-app startup/restore, which would inspect unrelated homes.
-    for app in ["claude", "gemini", "grokbuild"] {
-        let config = block_on(state.db.get_proxy_config_for_app(app)).map_err(service_error)?;
+    for app in [AppType::Claude, AppType::Gemini, AppType::GrokBuild] {
+        let config = block_on(state.db.get_proxy_config_for_app(&app)).map_err(service_error)?;
         if config.enabled
             || config.auto_failover_enabled
-            || block_on(state.db.get_live_backup(app))
+            || block_on(state.db.get_live_backup(&app))
                 .map_err(service_error)?
                 .is_some()
         {
             return Err("other_app_route_not_supported");
         }
     }
-    let app = block_on(state.db.get_proxy_config_for_app("codex")).map_err(service_error)?;
+    let app =
+        block_on(state.db.get_proxy_config_for_app(&AppType::Codex)).map_err(service_error)?;
     if app.auto_failover_enabled {
         return Err("automatic_failover_not_supported");
     }
@@ -425,7 +430,7 @@ pub(super) fn activate(state: &AppState, provider: &Provider) -> Result<()> {
     // The row may have just been updated with the live choices.
     let provider = state
         .db
-        .get_provider_by_id(&provider.id, "codex")
+        .get_provider_by_id(&provider.id, &AppType::Codex)
         .map_err(service_error)?
         .unwrap_or_else(|| provider.clone());
     activate_saved(state, &provider)
@@ -496,7 +501,7 @@ pub(super) fn official_in_use(state: &AppState) -> Result<Option<Provider>> {
     let current = ProviderService::current(state, AppType::Codex).map_err(service_error)?;
     let provider = state
         .db
-        .get_provider_by_id(&current, "codex")
+        .get_provider_by_id(&current, &AppType::Codex)
         .map_err(service_error)?;
     Ok(provider.filter(crate::services::provider::codex_direct::is_official))
 }
@@ -506,7 +511,7 @@ pub(super) fn reconcile(state: &AppState) -> Result<()> {
     let current = ProviderService::current(state, AppType::Codex).map_err(service_error)?;
     let Some(provider) = state
         .db
-        .get_provider_by_id(&current, "codex")
+        .get_provider_by_id(&current, &AppType::Codex)
         .map_err(service_error)?
     else {
         sync_routing(state);
@@ -604,7 +609,7 @@ pub(super) fn detach_for_exit(state: &AppState) -> Result<()> {
     let Some(route) = current
         .proxy_route
         .as_deref()
-        .map(|id| state.db.get_provider_by_id(id, "codex"))
+        .map(|id| state.db.get_provider_by_id(id, &AppType::Codex))
         .transpose()
         .map_err(service_error)?
         .flatten()

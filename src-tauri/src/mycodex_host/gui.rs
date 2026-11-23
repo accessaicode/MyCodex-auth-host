@@ -61,7 +61,7 @@ pub(super) fn edit_base(host: &Host, params: &Value) -> Result<(Option<Provider>
     valid_id(id)?;
     let previous = state
         .db
-        .get_provider_by_id(id, "codex")
+        .get_provider_by_id(id, &AppType::Codex)
         .map_err(service_error)?;
     let edited = if let Some(stored) = &previous {
         let edited = form::snapshot(state, stored)?;
@@ -158,12 +158,12 @@ fn persist(host: &Host, previous: Option<&Provider>, edited: Provider) -> Result
     let applied = current == id || (previous.is_none() && current.is_empty());
     let mode_change = lifecycle::needs_mode_change(&edited)?;
     if current.is_empty() && previous.is_none() {
-        McpService::import_from_codex(state).map_err(service_error)?;
+        McpService::import_from_app(state, &AppType::Codex).map_err(service_error)?;
     }
     if applied && mode_change {
         state
             .db
-            .save_provider("codex", &edited)
+            .save_provider(&AppType::Codex, &edited)
             .map_err(|_| "save_outcome_unknown")?;
         lifecycle::activate_saved(state, &edited).map_err(|_| "save_outcome_unknown")?;
     } else {
@@ -176,7 +176,10 @@ fn persist(host: &Host, previous: Option<&Provider>, edited: Provider) -> Result
             } else if applied {
                 ProviderService::add(state, AppType::Codex, edited, false)
             } else {
-                state.db.save_provider("codex", &edited).map(|_| true)
+                state
+                    .db
+                    .save_provider(&AppType::Codex, &edited)
+                    .map(|_| true)
             };
             // A native write may have occurred before an error; never advertise safe retry.
             result.map_err(|_| "save_outcome_unknown")?;
@@ -309,7 +312,7 @@ pub(super) fn handle(host: &Host, method: &str, params: &Value) -> Result<Value>
                 // the existing identity cannot be safely captured.
                 state
                     .db
-                    .save_provider("codex", &edited)
+                    .save_provider(&AppType::Codex, &edited)
                     .map_err(|_| "save_outcome_unknown")?;
                 false
             } else {
@@ -339,7 +342,7 @@ pub(super) fn handle(host: &Host, method: &str, params: &Value) -> Result<Value>
             }
             if state
                 .db
-                .get_provider_by_id(id, "codex")
+                .get_provider_by_id(id, &AppType::Codex)
                 .map_err(service_error)?
                 .is_some()
             {
@@ -353,7 +356,7 @@ pub(super) fn handle(host: &Host, method: &str, params: &Value) -> Result<Value>
             // A copy is never in use; store the row without native activation.
             state
                 .db
-                .save_provider("codex", &edited)
+                .save_provider(&AppType::Codex, &edited)
                 .map_err(|_| "save_outcome_unknown")?;
             let stored = form::stored(state, id)?;
             form::summary(state, &stored, &stored)

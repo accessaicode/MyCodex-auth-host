@@ -26,16 +26,16 @@ mod security;
 mod session_choices;
 mod session_history;
 mod session_ledger;
-mod session_repair;
 mod session_provider;
 mod session_provider_metadata;
+mod session_repair;
 mod shadowed_settings;
 mod stack;
 mod usage;
 
 type Result<T> = std::result::Result<T, &'static str>;
 const MAX_REQUEST: usize = 1_048_576;
-const UPSTREAM: &str = "85ad4969b3399500baaea9d46b1e08f87aba80e1";
+const UPSTREAM: &str = "768eec9ca94db629f086e8c01ca91e2f63bb273d";
 
 pub(crate) struct RuntimePaths {
     pub data_dir: PathBuf,

@@ -43,7 +43,7 @@ fn provider(state: &AppState, params: &Value) -> Result<Provider> {
     valid_id(id)?;
     state
         .db
-        .get_provider_by_id(id, "codex")
+        .get_provider_by_id(id, &AppType::Codex)
         .map_err(service_error)?
         .ok_or("provider_not_found")
 }
@@ -154,7 +154,7 @@ fn exit(state: &AppState) -> Result<Value> {
     let current = ProviderService::current(state, AppType::Codex).map_err(service_error)?;
     let default = state
         .db
-        .get_provider_by_id(&current, "codex")
+        .get_provider_by_id(&current, &AppType::Codex)
         .map_err(service_error)?
         .ok_or("provider_not_found")?;
     lifecycle::exit_stack(state, &default)?;

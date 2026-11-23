@@ -339,7 +339,7 @@ async fn fetch(state: &AppState, params: &Value) -> Result<Value> {
         if let Some(id) = params["providerId"].as_str().filter(|s| !s.is_empty()) {
             let provider = state
                 .db
-                .get_provider_by_id(id, "codex")
+                .get_provider_by_id(id, &AppType::Codex)
                 .map_err(|_| "database_failed")?
                 .ok_or("provider_not_found")?;
             let target_matches = validate_credential_target(base, kind, &provider).is_ok();

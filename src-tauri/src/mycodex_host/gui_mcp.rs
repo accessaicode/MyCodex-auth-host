@@ -144,7 +144,8 @@ pub(super) fn handle(host: &Host, method: &str, params: &Value) -> Result<Value>
     }
     codex_only(host)?;
     if method == "gui/mcp/import" {
-        let count = McpService::import_from_codex(&host.state).map_err(|_| "operation_unknown")?;
+        let count = McpService::import_from_app(&host.state, &crate::AppType::Codex)
+            .map_err(|_| "operation_unknown")?;
         return Ok(json!({"imported":count}));
     }
     let id = params["serverId"].as_str().ok_or("invalid_params")?;

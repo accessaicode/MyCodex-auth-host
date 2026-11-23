@@ -90,7 +90,13 @@ fn current_exclusive(state: &AppState) -> BTreeMap<String, String> {
     ProviderService::current(state, AppType::Codex)
         .ok()
         .filter(|id| !id.is_empty())
-        .and_then(|id| state.db.get_provider_by_id(&id, "codex").ok().flatten())
+        .and_then(|id| {
+            state
+                .db
+                .get_provider_by_id(&id, &AppType::Codex)
+                .ok()
+                .flatten()
+        })
         .map(|provider| exclusive(&provider))
         .unwrap_or_default()
 }

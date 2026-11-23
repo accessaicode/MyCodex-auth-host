@@ -294,7 +294,7 @@ fn save(state: &AppState, params: &Value) -> Result<Value> {
         .usage_script = Some(script);
     state
         .db
-        .save_provider("codex", &provider)
+        .save_provider(&AppType::Codex, &provider)
         .map_err(|_| "save_outcome_unknown")?;
     view(&provider)
 }

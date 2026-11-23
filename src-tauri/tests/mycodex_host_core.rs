@@ -228,7 +228,7 @@ impl Resident {
         assert_eq!(ready["event"], "ready");
         assert_eq!(ready["protocolVersion"], protocol);
         if protocol == 3 {
-            assert_eq!(ready["hostVersion"], "0.4.2");
+            assert_eq!(ready["hostVersion"], "0.5.0");
             assert_eq!(
                 ready["sourceRevision"],
                 env!("MYCODEX_CORE_SOURCE_REVISION")
@@ -330,7 +330,7 @@ fn build_identity_is_independent_of_runtime_checkout_and_matches_resident() {
     assert!(output.status.success());
     let identity: Value = serde_json::from_slice(&output.stdout).unwrap();
     assert_eq!(identity["protocolVersion"], 3);
-    assert_eq!(identity["hostVersion"], "0.4.2");
+    assert_eq!(identity["hostVersion"], "0.5.0");
     assert_eq!(
         identity["sourceRevision"],
         env!("MYCODEX_CORE_SOURCE_REVISION")
@@ -342,7 +342,7 @@ fn build_identity_is_independent_of_runtime_checkout_and_matches_resident() {
     assert_eq!(identity["target"], env!("MYCODEX_CORE_TARGET"));
     assert_eq!(
         identity["upstreamRevision"],
-        "85ad4969b3399500baaea9d46b1e08f87aba80e1"
+        "768eec9ca94db629f086e8c01ca91e2f63bb273d"
     );
     for dir in [&p.unrelated, &p.data, &p.codex] {
         assert_eq!(fs::read_dir(dir).unwrap().count(), 0);

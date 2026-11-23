@@ -13,7 +13,7 @@ import tempfile
 
 NAME = "mycodex-auth-host"
 MANIFEST = NAME + ".manifest.json"
-UPSTREAM = "85ad4969b3399500baaea9d46b1e08f87aba80e1"
+UPSTREAM = "768eec9ca94db629f086e8c01ca91e2f63bb273d"
 FIELDS = ("hostVersion", "protocolVersion", "upstreamRevision", "sourceRevision",
           "sourceDirty", "target", "sha256")
 
@@ -39,7 +39,7 @@ def native_target():
 
 
 def validate(identity):
-    require(identity.get("protocolVersion") == 3 and identity.get("hostVersion") == "0.4.2"
+    require(identity.get("protocolVersion") == 3 and identity.get("hostVersion") == "0.5.0"
             and identity.get("upstreamRevision") == UPSTREAM
             and re.fullmatch(r"[0-9a-f]{40}", identity.get("sourceRevision", ""))
             and type(identity.get("sourceDirty")) is bool

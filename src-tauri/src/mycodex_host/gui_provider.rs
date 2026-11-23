@@ -28,7 +28,7 @@ pub(super) fn hash(value: &Value) -> String {
 pub(super) fn stored(state: &AppState, id: &str) -> Result<Provider> {
     state
         .db
-        .get_provider_by_id(id, "codex")
+        .get_provider_by_id(id, &AppType::Codex)
         .map_err(service_error)?
         .ok_or("provider_not_found")
 }
