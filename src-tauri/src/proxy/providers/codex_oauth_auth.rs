@@ -31,6 +31,7 @@ use tokio::sync::{Mutex, RwLock};
 use uuid::Uuid;
 
 use super::copilot_auth::{GitHubAccount, GitHubDeviceCodeResponse};
+use crate::codex_config::CodexOAuthTokenMetadata;
 
 mod browser;
 #[path = "codex_oauth_import.rs"]
@@ -179,7 +180,7 @@ struct OpenAiAuthClaim {
 }
 
 /// 缓存的 access_token（含过期时间）
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 struct CachedAccessToken {
     token: String,
     /// 过期时间戳（毫秒）
@@ -193,7 +194,7 @@ struct CachedAccessToken {
 impl CachedAccessToken {
     fn is_expiring_soon(&self) -> bool {
         let now = chrono::Utc::now().timestamp_millis();
-        self.expires_at_ms - now < TOKEN_REFRESH_BUFFER_MS
+        self.expires_at_ms.saturating_sub(now) < TOKEN_REFRESH_BUFFER_MS
     }
 }
 
@@ -295,6 +296,11 @@ struct CodexAccountData {
     /// cc-switch 都可能轮换 refresh_token 时拒绝从 live 采纳更旧的一代。
     #[serde(default)]
     pub token_updated_at_ms: i64,
+    #[serde(flatten)]
+    pub token_metadata: CodexOAuthTokenMetadata,
+    /// Private, same-generation access material, so restart does not force an unnecessary refresh.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    cached_access_token: Option<CachedAccessToken>,
 }
 
 /// 公开的账号信息（返回给前端，复用 GitHubAccount 结构）
@@ -327,6 +333,30 @@ impl From<&CodexAccountData> for GitHubAccount {
 }
 
 impl CodexAccountData {
+    fn restorable_access_token(&self) -> Option<CachedAccessToken> {
+        let mut cached = self.cached_access_token.clone()?;
+        if self.token_updated_at_ms <= 0
+            || cached.obtained_at_ms != self.token_updated_at_ms
+            || cached.obtained_at_ms > chrono::Utc::now().timestamp_millis()
+        {
+            return None;
+        }
+        let auth = crate::codex_config::codex_managed_oauth_auth_value(
+            self.chatgpt_account_id.as_deref()?,
+            &cached.token,
+            self.id_token.as_deref(),
+            &self.refresh_token,
+            "",
+        );
+        existing_login_identity(&auth).ok()?;
+        let expiry = existing_login::jwt_payload(&cached.token)?
+            .get("exp")?
+            .as_i64()?
+            .checked_mul(1000)?;
+        cached.expires_at_ms = cached.expires_at_ms.min(expiry);
+        (!cached.is_expiring_soon()).then_some(cached)
+    }
+
     fn apply_refreshed_tokens(&mut self, tokens: &OAuthTokenResponse) -> bool {
         let refreshed_account_id = extract_account_metadata_from_tokens(tokens).0;
         let mut changed = false;
@@ -377,13 +407,14 @@ pub(crate) struct ManagedTokenBundle {
     /// access_token 的真实获取时间，RFC3339 纳秒精度 + `Z`（与原生 auth.json 的
     /// `last_refresh` 形状一致）。反映 token 何时真正刷新，而非写盘时刻。
     pub last_refresh: String,
+    pub token_metadata: CodexOAuthTokenMetadata,
 }
 
 /// Codex OAuth 认证管理器（多账号）
 pub struct CodexOAuthManager {
     accounts: Arc<RwLock<HashMap<String, CodexAccountData>>>,
     default_account_id: Arc<RwLock<Option<String>>>,
-    /// 内存缓存的 access_token（不持久化）
+    /// Access cache restored only from complete, same-generation private account records.
     access_tokens: Arc<RwLock<HashMap<String, CachedAccessToken>>>,
     /// 每个账号的刷新锁
     refresh_locks: Arc<RwLock<HashMap<String, Arc<Mutex<()>>>>>,
@@ -976,8 +1007,12 @@ impl CodexOAuthManager {
         let obtained_at_ms = chrono::Utc::now().timestamp_millis();
 
         // 如果服务端返回了新的 refresh_token 或 id_token，更新存储
-        let mut needs_save = false;
-        let (stored_refresh_token, stored_id_token, chatgpt_account_id) = {
+        let cached = CachedAccessToken {
+            token: new_tokens.access_token.clone(),
+            expires_at_ms: compute_expires_at_ms(new_tokens.expires_in),
+            obtained_at_ms,
+        };
+        let (stored_refresh_token, stored_id_token, chatgpt_account_id, token_metadata) = {
             let mut accounts = self.accounts.write().await;
             let account = accounts
                 .get_mut(account_id)
@@ -990,9 +1025,7 @@ impl CodexOAuthManager {
                     "账号凭据已更新，已丢弃旧刷新响应".to_string(),
                 ));
             }
-            if account.apply_refreshed_tokens(&new_tokens) {
-                needs_save = true;
-            }
+            account.apply_refreshed_tokens(&new_tokens);
             // 刷新使用 openid scope，正常会返回新 id_token；为空则视为缺失，
             // 保留旧值而非覆盖（旧值的 claims 仍可用于账号/套餐显示）。
             if let Some(new_id_token) = new_tokens
@@ -1002,44 +1035,37 @@ impl CodexOAuthManager {
             {
                 if account.id_token.as_deref() != Some(new_id_token.as_str()) {
                     account.id_token = Some(new_id_token);
-                    needs_save = true;
                 }
             }
             if account.token_updated_at_ms != obtained_at_ms {
                 account.token_updated_at_ms = obtained_at_ms;
-                needs_save = true;
             }
+            account.cached_access_token = Some(cached.clone());
             (
                 account.refresh_token.clone(),
                 account.id_token.clone(),
                 account.chatgpt_account_id.clone(),
+                account.token_metadata.clone(),
             )
         };
-        if needs_save {
-            self.save_to_disk().await?;
-        }
+        self.save_to_disk().await?;
         let chatgpt_account_id = chatgpt_account_id.ok_or_else(|| {
             CodexOAuthError::ParseError(
                 "无法从刷新后的 token 中提取 chatgpt_account_id".to_string(),
             )
         })?;
 
-        let cached = CachedAccessToken {
-            token: new_tokens.access_token.clone(),
-            expires_at_ms: compute_expires_at_ms(new_tokens.expires_in),
-            obtained_at_ms,
-        };
-
         let last_refresh = chrono::DateTime::<chrono::Utc>::from_timestamp_millis(obtained_at_ms)
             .unwrap_or_else(chrono::Utc::now)
             .to_rfc3339_opts(chrono::SecondsFormat::Nanos, true);
-        let refreshed_auth = crate::codex_config::codex_managed_oauth_auth_value(
+        let mut refreshed_auth = crate::codex_config::codex_managed_oauth_auth_value(
             &chatgpt_account_id,
             &cached.token,
             stored_id_token.as_deref(),
             &stored_refresh_token,
             &last_refresh,
         );
+        token_metadata.apply_to_auth(&mut refreshed_auth);
         if let Err(err) = crate::codex_config::sync_codex_managed_oauth_live_auth_after_refresh(
             account_id,
             &refresh_token,
@@ -1127,7 +1153,7 @@ impl CodexOAuthManager {
             chrono::DateTime::<chrono::Utc>::from_timestamp_millis(cached.obtained_at_ms)
                 .unwrap_or_else(chrono::Utc::now)
                 .to_rfc3339_opts(chrono::SecondsFormat::Nanos, true);
-        let (chatgpt_account_id, id_token, refresh_token) = {
+        let (chatgpt_account_id, id_token, refresh_token, token_metadata) = {
             let accounts = self.accounts.read().await;
             let account = accounts
                 .get(account_id)
@@ -1140,6 +1166,7 @@ impl CodexOAuthManager {
                 })?,
                 account.id_token.clone(),
                 account.refresh_token.clone(),
+                account.token_metadata.clone(),
             )
         };
         Ok(ManagedTokenBundle {
@@ -1148,6 +1175,7 @@ impl CodexOAuthManager {
             id_token,
             refresh_token,
             last_refresh,
+            token_metadata,
         })
     }
 
@@ -1353,6 +1381,7 @@ impl CodexOAuthManager {
             // 服务端提前失效。在同一 accounts 写锁内（accounts -> access_tokens 顺序）
             // 清缓存，避免释放锁后被快路径读到旧 token；下次按新 refresh_token 重取。
             if material_replaced {
+                account.cached_access_token = None;
                 self.access_tokens.write().await.remove(account_id);
             }
 
@@ -1616,6 +1645,8 @@ impl CodexOAuthManager {
             authenticated_at: chrono::Utc::now().timestamp(),
             id_token: id_token.map(|token| token.to_string()),
             token_updated_at_ms: obtained_at_ms,
+            token_metadata: Default::default(),
+            cached_access_token: None,
         };
         {
             let mut accounts = self.accounts.write().await;
@@ -1706,7 +1737,10 @@ impl CodexOAuthManager {
             None => None,
         };
         let now = chrono::Utc::now().timestamp();
-        let now_ms = chrono::Utc::now().timestamp_millis();
+        let now_ms = initial_access_token
+            .as_ref()
+            .map(|cached| cached.obtained_at_ms)
+            .unwrap_or_else(|| chrono::Utc::now().timestamp_millis());
 
         if replacing_existing {
             let accounts = self.accounts.read().await;
@@ -1771,6 +1805,8 @@ impl CodexOAuthManager {
             authenticated_at: now,
             id_token,
             token_updated_at_ms: now_ms,
+            token_metadata: Default::default(),
+            cached_access_token: initial_access_token.clone(),
         };
 
         let account = GitHubAccount::from(&data);
@@ -2051,7 +2087,20 @@ impl CodexOAuthManager {
             .map_err(|e| CodexOAuthError::ParseError(e.to_string()))?;
 
         if let Ok(mut accounts) = self.accounts.try_write() {
+            let restored = store
+                .accounts
+                .iter()
+                .filter_map(|(id, data)| {
+                    data.restorable_access_token()
+                        .map(|cached| (id.clone(), cached))
+                })
+                .collect();
+            let mut cache = self
+                .access_tokens
+                .try_write()
+                .map_err(|_| CodexOAuthError::ParseError("Account cache is busy".into()))?;
             *accounts = store.accounts;
+            *cache = restored;
             log::info!("[CodexOAuth] 从磁盘加载 {} 个账号", accounts.len());
         }
         if let Ok(mut default) = self.default_account_id.try_write() {

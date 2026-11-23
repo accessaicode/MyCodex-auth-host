@@ -33,6 +33,48 @@ pub(super) fn stored(state: &AppState, id: &str) -> Result<Provider> {
         .ok_or("provider_not_found")
 }
 
+pub(super) fn check_live_file_attributes() -> Result<()> {
+    // Windows cannot replace a readonly destination. Refuse before journaling a switch.
+    #[cfg(windows)]
+    for path in [
+        crate::codex_config::get_codex_auth_path(),
+        crate::codex_config::get_codex_config_path(),
+    ] {
+        if path
+            .metadata()
+            .is_ok_and(|meta| meta.permissions().readonly())
+        {
+            return Err("live_files_readonly");
+        }
+    }
+    Ok(())
+}
+
+/// Resolve account material before a provider switch can write client configuration.
+pub(super) fn prepare_account_credentials(state: &AppState, provider: &Provider) -> Result<()> {
+    use crate::proxy::providers::codex_oauth_auth::CodexOAuthError;
+    let Some(id) = provider
+        .meta
+        .as_ref()
+        .and_then(|meta| meta.managed_account_id_for("codex_oauth"))
+    else {
+        return Ok(());
+    };
+    futures::executor::block_on(
+        state
+            .codex_oauth_manager
+            .get_valid_token_bundle_for_account(&id),
+    )
+    .map(|_| ())
+    .map_err(|error| match error {
+        CodexOAuthError::RefreshTokenInvalid => "reauth_required",
+        CodexOAuthError::AccountNotFound(_) => "account_not_found",
+        CodexOAuthError::AccountUnavailable(_) => "account_unavailable",
+        CodexOAuthError::NetworkError(_) => "account_prepare_network_failed",
+        _ => "account_prepare_failed",
+    })
+}
+
 // v4 rows own the key fields and global settings stay in the live file. While a
 // provider is in use, Codex and MyCodex may change its model and reasoning
 // settings in the live file; the form shows and saves those values. They are
