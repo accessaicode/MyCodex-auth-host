@@ -141,6 +141,7 @@ impl CodexOAuthManager {
             cached_access_token: None,
         });
         let mut replace_cache = existing.is_none();
+        let mut cache_expiry_bound = None;
         if let Some(existing) = existing.as_ref() {
             let cached = self
                 .access_tokens
@@ -170,8 +171,12 @@ impl CodexOAuthManager {
                 replace_cache = true;
             } else {
                 data.token_updated_at_ms = data.token_updated_at_ms.max(observed);
+                cache_expiry_bound = cached.as_ref().map(|cached| cached.expires_at_ms);
                 // Unknown generation stays unknown; importing never manufactures "now".
-                replace_cache = cached.is_none();
+                // Re-date the complete matching bundle, including a cache rejected on restart.
+                replace_cache = cached.as_ref().is_none_or(|cached| {
+                    observed == data.token_updated_at_ms && cached.obtained_at_ms != observed
+                });
             }
         }
         if observed >= data.token_updated_at_ms {
@@ -184,6 +189,7 @@ impl CodexOAuthManager {
                 data.cached_access_token = jwt_payload(access_token)
                     .and_then(|value| value.get("exp").and_then(Value::as_i64))
                     .and_then(|seconds| seconds.checked_mul(1000))
+                    .map(|expiry| cache_expiry_bound.map_or(expiry, |bound| expiry.min(bound)))
                     .filter(|expiry| *expiry > chrono::Utc::now().timestamp_millis())
                     .map(|expires_at_ms| CachedAccessToken {
                         token: access_token.to_string(),
@@ -392,6 +398,85 @@ mod tests {
             let rejected = CodexOAuthManager::new(temp.path().to_path_buf());
             assert!(rejected.access_tokens.read().await.is_empty(), "{case}");
         }
+    }
+
+    #[tokio::test]
+    async fn existing_login_timestamp_only_changes_keep_both_caches_in_sync() {
+        for adopt in [false, true] {
+            let temp = tempfile::tempdir().unwrap();
+            let manager = CodexOAuthManager::new(temp.path().to_path_buf());
+            let mut auth = login("one", "workspace", "r0", Some("2026-01-01T00:00:00Z"));
+            let id = manager.import_existing_login(&auth).await.unwrap();
+            let mut original = manager.access_tokens.read().await[&id].clone();
+            // An OAuth expires_in deadline can be earlier than the JWT exp claim.
+            original.expires_at_ms = chrono::Utc::now().timestamp_millis() + 3_600_000;
+            manager
+                .accounts
+                .write()
+                .await
+                .get_mut(&id)
+                .unwrap()
+                .cached_access_token = Some(original.clone());
+            manager
+                .access_tokens
+                .write()
+                .await
+                .insert(id.clone(), original.clone());
+            manager.save_to_disk().await.unwrap();
+            let observed = original.obtained_at_ms + 86_400_000;
+            if adopt {
+                manager
+                    .adopt_account_refresh_token(
+                        &id,
+                        auth["tokens"]["refresh_token"].as_str().unwrap().into(),
+                        Some(auth["tokens"]["id_token"].as_str().unwrap().into()),
+                        Some(observed),
+                    )
+                    .await
+                    .unwrap();
+            } else {
+                auth["last_refresh"] = json!("2026-01-02T00:00:00Z");
+                manager.import_existing_login(&auth).await.unwrap();
+            }
+            let cached = manager.access_tokens.read().await[&id].clone();
+            assert_eq!(cached.obtained_at_ms, observed, "adopt={adopt}");
+            assert_eq!(cached.token, original.token);
+            assert_eq!(cached.expires_at_ms, original.expires_at_ms);
+            let reopened = CodexOAuthManager::new(temp.path().to_path_buf());
+            assert_eq!(reopened.access_tokens.read().await[&id], cached);
+            assert_eq!(
+                reopened.accounts.read().await[&id]
+                    .cached_access_token
+                    .as_ref(),
+                Some(&cached)
+            );
+        }
+    }
+
+    #[tokio::test]
+    async fn existing_login_recapture_repairs_timestamp_mismatch_without_extending_expiry() {
+        let temp = tempfile::tempdir().unwrap();
+        let manager = CodexOAuthManager::new(temp.path().to_path_buf());
+        let mut auth = login("one", "workspace", "r0", Some("2026-01-01T00:00:00Z"));
+        let id = manager.import_existing_login(&auth).await.unwrap();
+        let original = manager.access_tokens.read().await[&id].clone();
+        let mut stored: Value =
+            serde_json::from_slice(&fs::read(&manager.storage_path).unwrap()).unwrap();
+        stored["accounts"][&id]["token_updated_at_ms"] =
+            json!(original.obtained_at_ms + 86_400_000);
+        fs::write(&manager.storage_path, serde_json::to_vec(&stored).unwrap()).unwrap();
+        let reopened = CodexOAuthManager::new(temp.path().to_path_buf());
+        assert!(reopened.access_tokens.read().await.is_empty());
+        auth["last_refresh"] = json!("2026-01-02T00:00:00Z");
+        reopened.import_existing_login(&auth).await.unwrap();
+        let restored = CodexOAuthManager::new(temp.path().to_path_buf());
+        let cache = restored.access_tokens.read().await;
+        assert_eq!(cache[&id].token, original.token);
+        assert_eq!(cache[&id].expires_at_ms, original.expires_at_ms);
+        assert_eq!(
+            cache[&id].obtained_at_ms,
+            original.obtained_at_ms + 86_400_000
+        );
     }
 
     #[tokio::test]

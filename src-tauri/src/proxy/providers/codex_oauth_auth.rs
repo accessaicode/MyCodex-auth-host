@@ -1298,6 +1298,7 @@ impl CodexOAuthManager {
                 .as_ref()
                 .is_some_and(|token| account.id_token.as_deref() != Some(token.as_str()));
             let material_changed = refresh_changed || id_token_changed;
+            let previous_generation = account.token_updated_at_ms;
             let manager_was_undated = account.token_updated_at_ms <= 0;
             // Once the manager has a dated generation, any different token
             // material must carry a *strictly newer* live timestamp. Equality is
@@ -1383,6 +1384,20 @@ impl CodexOAuthManager {
             if material_replaced {
                 account.cached_access_token = None;
                 self.access_tokens.write().await.remove(account_id);
+            } else if previous_generation > 0 && account.token_updated_at_ms != previous_generation
+            {
+                // The same credential generation acquired a newer observation timestamp.
+                // Keep both caches aligned without extending the access token's expiry.
+                let mut cache = self.access_tokens.write().await;
+                for cached in account
+                    .cached_access_token
+                    .iter_mut()
+                    .chain(cache.get_mut(account_id))
+                {
+                    if cached.obtained_at_ms == previous_generation {
+                        cached.obtained_at_ms = account.token_updated_at_ms;
+                    }
+                }
             }
 
             if let RefreshTokenAdoptionOutcome::Synchronized { .. } = outcome {

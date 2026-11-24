@@ -552,6 +552,42 @@ fn captured_accounts_switch_after_restart_using_their_valid_token_bundles() {
 }
 
 #[test]
+fn timestamp_only_capture_keeps_accounts_switchable_after_restart() {
+    let mut gui = Gui::new();
+    gui.offline = true;
+    external_account(&gui, "alice", "workspace", "model-a");
+    gui.start();
+    let a = gui.ok("gui/provider/list", json!({}))["currentProviderId"]
+        .as_str()
+        .unwrap()
+        .to_string();
+    let auth_path = gui.root.path().join("codex/auth.json");
+    let mut auth: Value = serde_json::from_slice(&std::fs::read(&auth_path).unwrap()).unwrap();
+    auth["last_refresh"] = json!("2024-01-02T00:00:00Z");
+    std::fs::write(&auth_path, serde_json::to_vec(&auth).unwrap()).unwrap();
+    assert_eq!(
+        gui.ok("gui/provider/list", json!({}))["currentProviderId"],
+        a
+    );
+    external_account(&gui, "bob", "workspace", "model-b");
+    let b = gui.ok("gui/provider/list", json!({}))["currentProviderId"]
+        .as_str()
+        .unwrap()
+        .to_string();
+    switch_gui(&gui, &a, "timestamp-before-restart");
+    switch_gui(&gui, &b, "timestamp-back-to-b");
+    gui.stop();
+    gui.start();
+    switch_gui(&gui, &a, "timestamp-after-restart");
+    let switched: Value = serde_json::from_slice(&std::fs::read(&auth_path).unwrap()).unwrap();
+    assert_eq!(switched["tokens"], auth["tokens"]);
+    assert_eq!(
+        gui.ok("gui/provider/list", json!({}))["currentProviderId"],
+        a
+    );
+}
+
+#[test]
 fn legacy_account_refresh_failure_is_reported_before_the_switch_starts() {
     let mut gui = Gui::new();
     gui.offline = true;
