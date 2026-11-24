@@ -6,6 +6,7 @@ use std::process::{Child, Command, Stdio};
 struct Gui {
     root: tempfile::TempDir,
     child: Option<Child>,
+    offline: bool,
 }
 impl Gui {
     fn new() -> Self {
@@ -13,7 +14,11 @@ impl Gui {
         for dir in ["store", "codex", "home"] {
             std::fs::create_dir(root.path().join(dir)).unwrap();
         }
-        Self { root, child: None }
+        Self {
+            root,
+            child: None,
+            offline: false,
+        }
     }
     fn command(&self, mode: &str) -> Command {
         let mut command = Command::new(env!("CARGO_BIN_EXE_mycodex-auth-host"));
@@ -34,6 +39,18 @@ impl Gui {
             .stdin(Stdio::piped())
             .stdout(Stdio::piped())
             .stderr(Stdio::piped());
+        if self.offline {
+            for name in [
+                "HTTPS_PROXY",
+                "HTTP_PROXY",
+                "ALL_PROXY",
+                "https_proxy",
+                "http_proxy",
+                "all_proxy",
+            ] {
+                command.env(name, "http://127.0.0.1:0");
+            }
+        }
         command
     }
     fn start(&mut self) {
@@ -420,6 +437,266 @@ fn auto_capture_accounts_bind_uuid_and_never_replace_previous_identity() {
         2
     );
     assert_live_unchanged(&gui, &a_live);
+}
+
+#[test]
+fn auto_capture_preserves_native_oauth_metadata_across_account_switches() {
+    let mut gui = Gui::new();
+    let auth_path = gui.root.path().join("codex/auth.json");
+    let mut captured = Vec::new();
+    gui.start();
+    for subject in ["alice", "bob"] {
+        external_account(&gui, subject, "workspace", "model-a");
+        let mut auth: Value = serde_json::from_slice(&std::fs::read(&auth_path).unwrap()).unwrap();
+        auth["auth_mode"] = json!("chatgpt");
+        auth["tokens"]["oauth_provenance"] = json!({
+            "issuer": "https://auth.openai.com", "client_id": "app_EMoamEEZ73f0CkXaXp7hrann"
+        });
+        auth["tokens"]["login_owner_id"] = json!(format!("synthetic-owner-{subject}"));
+        let bytes = serde_json::to_vec(&auth).unwrap();
+        std::fs::write(&auth_path, &bytes).unwrap();
+        let list = gui.ok("gui/provider/list", json!({}));
+        assert_eq!(list["liveState"], "current", "{list}");
+        assert!(list["syncError"].is_null(), "{list}");
+        assert_eq!(std::fs::read(&auth_path).unwrap(), bytes);
+        captured.push((
+            list["currentProviderId"].as_str().unwrap().to_string(),
+            auth,
+        ));
+    }
+    assert_ne!(captured[0].0, captured[1].0);
+    let archive: Value = serde_json::from_slice(
+        &std::fs::read(gui.root.path().join("store/codex_oauth_auth.json")).unwrap(),
+    )
+    .unwrap();
+    for (_, auth) in &captured {
+        let account = archive["accounts"]
+            .as_object()
+            .unwrap()
+            .values()
+            .find(|account| account["id_token"] == auth["tokens"]["id_token"])
+            .expect("captured account must be persisted");
+        for field in ["oauth_provenance", "login_owner_id"] {
+            assert_eq!(account[field], auth["tokens"][field]);
+        }
+    }
+    for (index, (id, original)) in captured.iter().enumerate() {
+        switch_gui(&gui, id, &format!("metadata-switch-{index}"));
+        let restored: Value = serde_json::from_slice(&std::fs::read(&auth_path).unwrap()).unwrap();
+        assert_eq!(restored["tokens"], original["tokens"]);
+    }
+    gui.stop();
+    gui.start();
+    let list = gui.ok("gui/provider/list", json!({}));
+    assert_eq!(list["providers"].as_array().unwrap().len(), 2);
+    assert_eq!(list["currentProviderId"], captured[1].0);
+    switch_gui(&gui, &captured[1].0, "metadata-after-restart");
+    let restored: Value = serde_json::from_slice(&std::fs::read(&auth_path).unwrap()).unwrap();
+    assert_eq!(restored["tokens"], captured[1].1["tokens"]);
+
+    let mut inconsistent = restored;
+    inconsistent["tokens"]["account_id"] = json!("different-workspace");
+    let inconsistent_bytes = serde_json::to_vec(&inconsistent).unwrap();
+    std::fs::write(&auth_path, &inconsistent_bytes).unwrap();
+    let failed = gui.ok("gui/provider/list", json!({}));
+    assert_eq!(failed["liveState"], "unavailable");
+    assert_eq!(failed["syncError"], "incomplete_account_credentials");
+    assert_eq!(std::fs::read(&auth_path).unwrap(), inconsistent_bytes);
+}
+
+#[test]
+fn captured_accounts_switch_after_restart_using_their_valid_token_bundles() {
+    let mut gui = Gui::new();
+    gui.offline = true;
+    external_account(&gui, "alice", "workspace", "model-a");
+    gui.start();
+    let a = gui.ok("gui/provider/list", json!({}))["currentProviderId"]
+        .as_str()
+        .unwrap()
+        .to_string();
+    let b_live = external_account(&gui, "bob", "workspace", "model-b");
+    let b = gui.ok("gui/provider/list", json!({}))["currentProviderId"]
+        .as_str()
+        .unwrap()
+        .to_string();
+    gui.stop();
+    gui.start();
+    assert_eq!(
+        gui.ok("gui/provider/list", json!({}))["currentProviderId"],
+        b
+    );
+    let provider = gui.ok("gui/provider/get", json!({"providerId":a}));
+    let plan = gui.ok(
+        "gui/provider/preflight",
+        json!({"providerId":a,"expectedVersion":provider["version"]}),
+    );
+    let result = gui.call(
+        "gui/provider/apply",
+        json!({"providerId":a,"expectedVersion":provider["version"],
+        "expectedFingerprint":plan["fingerprint"],"operationId":"restart-account-switch"}),
+    );
+    if result.get("error").is_some() {
+        assert_live_unchanged(&gui, &b_live);
+        let receipt = gui.call(
+            "gui/operation/get",
+            json!({"operationId":"restart-account-switch"}),
+        );
+        assert_eq!(receipt["error"]["message"], "operation_unknown");
+    }
+    assert_eq!(result["result"]["status"], "applied", "{result}");
+    let auth: Value =
+        serde_json::from_slice(&std::fs::read(gui.root.path().join("codex/auth.json")).unwrap())
+            .unwrap();
+    assert_eq!(auth["tokens"]["refresh_token"], "synthetic-secret-alice");
+    switch_gui(&gui, &b, "return-to-bob-after-restart");
+}
+
+#[test]
+fn timestamp_only_capture_keeps_accounts_switchable_after_restart() {
+    let mut gui = Gui::new();
+    gui.offline = true;
+    external_account(&gui, "alice", "workspace", "model-a");
+    gui.start();
+    let a = gui.ok("gui/provider/list", json!({}))["currentProviderId"]
+        .as_str()
+        .unwrap()
+        .to_string();
+    let auth_path = gui.root.path().join("codex/auth.json");
+    let mut auth: Value = serde_json::from_slice(&std::fs::read(&auth_path).unwrap()).unwrap();
+    auth["last_refresh"] = json!("2024-01-02T00:00:00Z");
+    std::fs::write(&auth_path, serde_json::to_vec(&auth).unwrap()).unwrap();
+    assert_eq!(
+        gui.ok("gui/provider/list", json!({}))["currentProviderId"],
+        a
+    );
+    external_account(&gui, "bob", "workspace", "model-b");
+    let b = gui.ok("gui/provider/list", json!({}))["currentProviderId"]
+        .as_str()
+        .unwrap()
+        .to_string();
+    switch_gui(&gui, &a, "timestamp-before-restart");
+    switch_gui(&gui, &b, "timestamp-back-to-b");
+    gui.stop();
+    gui.start();
+    switch_gui(&gui, &a, "timestamp-after-restart");
+    let switched: Value = serde_json::from_slice(&std::fs::read(&auth_path).unwrap()).unwrap();
+    assert_eq!(switched["tokens"], auth["tokens"]);
+    assert_eq!(
+        gui.ok("gui/provider/list", json!({}))["currentProviderId"],
+        a
+    );
+}
+
+#[test]
+fn legacy_account_refresh_failure_is_reported_before_the_switch_starts() {
+    let mut gui = Gui::new();
+    gui.offline = true;
+    external_account(&gui, "alice", "workspace", "model-a");
+    gui.start();
+    let a = gui.ok("gui/provider/list", json!({}))["currentProviderId"]
+        .as_str()
+        .unwrap()
+        .to_string();
+    let b_live = external_account(&gui, "bob", "workspace", "model-b");
+    let b = gui.ok("gui/provider/list", json!({}))["currentProviderId"]
+        .as_str()
+        .unwrap()
+        .to_string();
+    gui.stop();
+    let store_path = gui.root.path().join("store/codex_oauth_auth.json");
+    let mut store: Value = serde_json::from_slice(&std::fs::read(&store_path).unwrap()).unwrap();
+    for account in store["accounts"].as_object_mut().unwrap().values_mut() {
+        account
+            .as_object_mut()
+            .unwrap()
+            .remove("cached_access_token");
+    }
+    std::fs::write(&store_path, serde_json::to_vec(&store).unwrap()).unwrap();
+    gui.start();
+    assert_eq!(
+        gui.ok("gui/provider/list", json!({}))["currentProviderId"],
+        b
+    );
+    let provider = gui.ok("gui/provider/get", json!({"providerId":a}));
+    let plan = gui.ok(
+        "gui/provider/preflight",
+        json!({"providerId":a,"expectedVersion":provider["version"]}),
+    );
+    let request = json!({"providerId":a,"expectedVersion":provider["version"],
+        "expectedFingerprint":plan["fingerprint"],"operationId":"legacy-offline-switch"});
+    for _ in 0..2 {
+        let failure = gui.call("gui/provider/apply", request.clone());
+        assert_eq!(
+            failure["error"]["message"], "account_prepare_network_failed",
+            "{failure}"
+        );
+        assert_live_unchanged(&gui, &b_live);
+    }
+    assert_eq!(
+        gui.ok("gui/provider/list", json!({}))["currentProviderId"],
+        b
+    );
+}
+
+#[cfg(windows)]
+#[test]
+fn readonly_live_files_refuse_switch_before_recording_an_operation() {
+    let mut gui = Gui::new();
+    gui.offline = true;
+    external_account(&gui, "alice", "workspace", "model-a");
+    gui.start();
+    let a = gui.ok("gui/provider/list", json!({}))["currentProviderId"]
+        .as_str()
+        .unwrap()
+        .to_string();
+    let mut before = external_account(&gui, "bob", "workspace", "model-b");
+    let b = gui.ok("gui/provider/list", json!({}))["currentProviderId"]
+        .as_str()
+        .unwrap()
+        .to_string();
+    for (index, name) in ["auth.json", "config.toml"].iter().enumerate() {
+        let id = if index == 0 { &a } else { &b };
+        let provider = gui.ok("gui/provider/get", json!({"providerId":id}));
+        let plan = gui.ok(
+            "gui/provider/preflight",
+            json!({"providerId":id,"expectedVersion":provider["version"]}),
+        );
+        let request = json!({"providerId":id,"expectedVersion":provider["version"],
+            "expectedFingerprint":plan["fingerprint"],"operationId":format!("readonly-{index}")});
+        let path = gui.root.path().join("codex").join(name);
+        let original = std::fs::metadata(&path).unwrap().permissions();
+        let mut readonly = original.clone();
+        readonly.set_readonly(true);
+        std::fs::set_permissions(&path, readonly).unwrap();
+        let preflight = gui.call(
+            "gui/provider/preflight",
+            json!({"providerId":id,"expectedVersion":provider["version"]}),
+        );
+        let first = gui.call("gui/provider/apply", request.clone());
+        let retry = gui.call("gui/provider/apply", request.clone());
+        let protected = std::fs::metadata(&path).unwrap().permissions().readonly();
+        let unchanged = (
+            std::fs::read(gui.root.path().join("codex/config.toml")).unwrap(),
+            std::fs::read(gui.root.path().join("codex/auth.json")).unwrap(),
+        );
+        std::fs::set_permissions(&path, original).unwrap();
+        for response in [preflight, first, retry] {
+            assert_eq!(
+                response["error"]["message"], "live_files_readonly",
+                "{response}"
+            );
+        }
+        assert!(
+            protected,
+            "A switch must keep the caller's readonly attribute."
+        );
+        assert_eq!(unchanged, before);
+        assert_eq!(gui.ok("gui/provider/apply", request)["status"], "applied");
+        before = (
+            std::fs::read(gui.root.path().join("codex/config.toml")).unwrap(),
+            std::fs::read(gui.root.path().join("codex/auth.json")).unwrap(),
+        );
+    }
 }
 
 #[test]

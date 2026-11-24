@@ -424,6 +424,7 @@ pub(super) fn handle(host: &Host, method: &str, params: &Value) -> Result<Value>
         }
         "gui/provider/preflight" => {
             let _guard = lifecycle::mutation()?;
+            form::check_live_file_attributes()?;
             let recovery = auto_capture::before_write_or_credential_recovery(state)?;
             let (stored, edited) = selected(host, params, true)?;
             let route_required = lifecycle::conversion(&edited)?;
@@ -445,11 +446,13 @@ pub(super) fn handle(host: &Host, method: &str, params: &Value) -> Result<Value>
                     return response.clone().ok_or("operation_unknown");
                 }
             }
+            form::check_live_file_attributes()?;
             let recovery = auto_capture::before_write_or_credential_recovery(state)?;
             let (stored, mut edited) = selected(host, params, true)?;
             if params["expectedFingerprint"].as_str() != Some(fingerprint(host)?.as_str()) {
                 return Err("config_conflict");
             }
+            form::prepare_account_credentials(state, &edited)?;
             if recovery {
                 if params["confirmCredentialRecovery"].as_bool() != Some(true) {
                     return Err("credential_recovery_confirmation_required");

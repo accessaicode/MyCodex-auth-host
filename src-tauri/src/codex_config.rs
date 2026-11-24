@@ -302,6 +302,32 @@ pub(crate) fn codex_managed_oauth_live_auth_marker_exists() -> bool {
     get_codex_managed_oauth_live_auth_marker_path().exists()
 }
 
+/// Native login metadata belongs to the token bundle and must survive capture and switching.
+#[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
+pub(crate) struct CodexOAuthTokenMetadata {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub oauth_provenance: Option<CodexOAuthProvenance>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub login_owner_id: Option<String>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub(crate) struct CodexOAuthProvenance {
+    pub issuer: String,
+    pub client_id: String,
+}
+
+impl CodexOAuthTokenMetadata {
+    pub(crate) fn apply_to_auth(&self, auth: &mut Value) {
+        if let Some(provenance) = &self.oauth_provenance {
+            auth["tokens"]["oauth_provenance"] = json!(provenance);
+        }
+        if let Some(owner) = &self.login_owner_id {
+            auth["tokens"]["login_owner_id"] = json!(owner);
+        }
+    }
+}
+
 /// 从 live/备份的 Codex `auth` 中提取上游 ChatGPT workspace ID。
 ///
 /// 仅接受 ChatGPT 登录形状（`auth_mode == "chatgpt"`、`OPENAI_API_KEY` 可清空）。
@@ -341,12 +367,18 @@ pub(crate) fn extract_codex_managed_oauth_account_id(auth: &Value) -> Option<Str
     if tokens.keys().any(|key| {
         !matches!(
             key.as_str(),
-            "access_token" | "account_id" | "id_token" | "refresh_token"
+            "access_token"
+                | "account_id"
+                | "id_token"
+                | "refresh_token"
+                | "oauth_provenance"
+                | "login_owner_id"
         )
     }) {
         return None;
     }
 
+    let _: CodexOAuthTokenMetadata = serde_json::from_value(Value::Object(tokens.clone())).ok()?;
     let account_id = tokens
         .get("account_id")
         .and_then(|value| value.as_str())

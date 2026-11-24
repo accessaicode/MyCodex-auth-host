@@ -541,13 +541,15 @@ pub(crate) fn get_codex_managed_oauth_live_auth_value(
                     )
                 })?;
 
-            Ok::<Value, String>(codex_managed_oauth_live_auth(
+            let mut auth = codex_managed_oauth_live_auth(
                 &bundle.chatgpt_account_id,
                 &bundle.access_token,
                 Some(id_token),
                 &bundle.refresh_token,
                 &bundle.last_refresh,
-            ))
+            );
+            bundle.token_metadata.apply_to_auth(&mut auth);
+            Ok::<Value, String>(auth)
         })
     })
     .join()
